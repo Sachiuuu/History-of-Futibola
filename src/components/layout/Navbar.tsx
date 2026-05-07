@@ -9,81 +9,115 @@ interface NavbarProps {
   leagueId?: string
 }
 
+const NAV_LINKS = [
+  { href: '#overview', label: 'Overview' },
+  { href: '#trophies', label: 'Trophies' },
+  { href: '#history', label: 'History' },
+  { href: '#seasons', label: 'Seasons' },
+  { href: '#kits', label: 'Kits' },
+  { href: '#legends', label: 'Legends' },
+]
+
 export default function Navbar({ clubName, leagueName, leagueId }: NavbarProps) {
   const { isDark, toggle } = useTheme()
 
   return (
-    <nav
-      className="fixed top-0 left-0 right-0 z-50 shadow-md transition-colors duration-300"
+    <header
+      className="sticky top-0 z-50"
       style={{
-        background: isDark ? 'rgba(10,10,10,0.92)' : 'rgba(255,255,255,0.90)',
-        backdropFilter: 'blur(16px)',
-        WebkitBackdropFilter: 'blur(16px)',
-        borderBottom: `2px solid var(--club-primary)`,
+        background: isDark
+          ? 'color-mix(in srgb, var(--paper) 88%, transparent)'
+          : 'color-mix(in srgb, var(--paper) 88%, transparent)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
+        borderBottom: '1px solid var(--rule)',
       }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center gap-2 text-sm">
+      <div
+        className="max-w-[1280px] mx-auto px-8 flex justify-between items-center gap-6"
+        style={{ padding: '14px 32px' }}
+      >
         {/* Brand */}
-        <Link
-          href="/"
-          className={`font-bold transition-opacity hover:opacity-70 ${isDark ? 'text-white' : 'text-gray-900'}`}
-        >
-          Story of Futiball
-        </Link>
-
-        {/* Breadcrumb */}
-        {leagueName && leagueId && (
-          <>
-            <span className={isDark ? 'text-white/40' : 'text-gray-400'}>/</span>
-            <Link
-              href={`/leagues/${leagueId}`}
-              className={`transition-colors hover:opacity-80 ${isDark ? 'text-white/70' : 'text-gray-600'}`}
+        <div className="flex items-center gap-3">
+          <div>
+            <div className="kicker" style={{ fontSize: 10 }}>Story of Futiball</div>
+            <div
+              style={{
+                fontFamily: 'var(--display)',
+                fontWeight: 'var(--display-weight)',
+                fontSize: 14,
+                letterSpacing: '0.04em',
+                color: 'var(--ink)',
+              }}
             >
-              {leagueName}
-            </Link>
-          </>
-        )}
+              {clubName ? (
+                <>
+                  {leagueId && leagueName && (
+                    <Link href={`/leagues/${leagueId}`} className="opacity-50 hover:opacity-80 transition-opacity mr-1">
+                      {leagueName}
+                    </Link>
+                  )}
+                  {leagueId && <span className="opacity-30 mr-1">/</span>}
+                  <span style={{ color: 'var(--accent)' }}>{clubName}</span>
+                </>
+              ) : (
+                <Link href="/" className="hover:opacity-70 transition-opacity">FOOTBALL · PROFILE</Link>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Section nav — desktop only */}
         {clubName && (
-          <>
-            <span className={isDark ? 'text-white/40' : 'text-gray-400'}>/</span>
-            <span className="font-semibold" style={{ color: 'var(--club-primary)' }}>{clubName}</span>
-          </>
+          <nav
+            className="hidden md:flex gap-5"
+            style={{
+              fontFamily: 'var(--mono)',
+              fontSize: 11,
+              textTransform: 'uppercase',
+              letterSpacing: '0.14em',
+              color: 'var(--muted)',
+            }}
+          >
+            {NAV_LINKS.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className="hover:opacity-100 transition-opacity"
+                style={{ opacity: 0.7 }}
+              >
+                {l.label}
+              </a>
+            ))}
+          </nav>
         )}
 
-        {/* Spacer */}
-        <div className="flex-1" />
-
-        {/* Dark/Light toggle */}
+        {/* Dark/light toggle */}
         <button
           onClick={toggle}
           aria-label="Toggle dark mode"
-          className={`w-9 h-9 rounded-full flex items-center justify-center border transition-all duration-200 hover:scale-110 ${
-            isDark
-              ? 'bg-white/10 border-white/20 text-white hover:bg-white/20'
-              : 'bg-gray-100 border-gray-200 text-gray-700 hover:bg-gray-200'
-          }`}
+          className="flex items-center justify-center w-8 h-8 rounded-full transition-all hover:scale-110 flex-shrink-0"
+          style={{
+            background: 'var(--paper-2)',
+            border: '1px solid var(--rule)',
+            color: 'var(--ink)',
+          }}
         >
           {isDark ? (
-            /* Sun icon */
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="5" />
-              <line x1="12" y1="1" x2="12" y2="3" />
-              <line x1="12" y1="21" x2="12" y2="23" />
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-              <line x1="1" y1="12" x2="3" y2="12" />
-              <line x1="21" y1="12" x2="23" y2="12" />
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+              <line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
             </svg>
           ) : (
-            /* Moon icon */
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
             </svg>
           )}
         </button>
       </div>
-    </nav>
+    </header>
   )
 }
