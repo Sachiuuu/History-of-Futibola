@@ -3,26 +3,168 @@
 import { useState } from 'react'
 import type { SeasonData } from '@/types/season'
 import SectionHeader from '@/components/ui/SectionHeader'
-import SeasonSelector from './SeasonSelector'
-import SeasonPanel from './SeasonPanel'
+import KitDisplay from './KitDisplay'
 
 interface SeasonSectionProps {
   availableSeasons: string[]
   seasonsData: Record<string, SeasonData>
 }
 
+function gd(s: SeasonData): string {
+  const diff = s.leagueGoalsFor - s.leagueGoalsAgainst
+  return diff >= 0 ? `+${diff}` : String(diff)
+}
+
+function notable(s: SeasonData): string {
+  if (s.internationalTournaments.length > 0) {
+    const t = s.internationalTournaments[0]
+    return `${t.competition} — ${t.stage}`
+  }
+  return s.seasonHighlight.slice(0, 60) + '…'
+}
+
+function ordSuffix(n: number): string {
+  const s = ['th', 'st', 'nd', 'rd']
+  const v = n % 100
+  return s[(v - 20) % 10] || s[v] || s[0]
+}
+
 export default function SeasonSection({ availableSeasons, seasonsData }: SeasonSectionProps) {
-  const [selected, setSelected] = useState<string | null>(null)
-  const seasonData = selected ? seasonsData[selected] : null
+  const firstSeason = availableSeasons[0] ?? null
+  const [selected, setSelected] = useState<string | null>(firstSeason)
+
+  const seasonList = availableSeasons
+    .map((s) => seasonsData[s])
+    .filter(Boolean)
+
+  const panel = selected ? seasonsData[selected] : null
 
   return (
-    <section>
-      <SectionHeader title="Season by Season" subtitle="Select a season to explore kits, results and top performers" />
-      <SeasonSelector seasons={availableSeasons} selected={selected} onSelect={setSelected} />
-      {seasonData && <SeasonPanel season={seasonData} />}
-      {!selected && (
-        <p className="mt-4 text-sm text-gray-400 italic text-center">Pick a season above to get started</p>
-      )}
+    <section id="seasons">
+      <SectionHeader kicker="Form Guide" title="Season by Season" />
+
+      <div style={{ display: 'grid', gridTemplateColumns: '7fr 5fr', gap: 32 }}>
+        {/* Left: seasons table */}
+        <div style={{ border: '1px solid var(--rule)', background: 'var(--paper-2)', overflowX: 'auto' }}>
+          <table className="season-table">
+            <thead>
+              <tr>
+                <th>Season</th>
+                <th className="num">Pos</th>
+                <th className="num">Pts</th>
+                <th className="num">W</th>
+                <th className="num">D</th>
+                <th className="num">L</th>
+                <th className="num">GD</th>
+                <th>Notable</th>
+              </tr>
+            </thead>
+            <tbody>
+              {seasonList.map((s, i) => (
+                <tr
+                  key={s.season}
+                  className={selected === s.season ? 'current' : ''}
+                  onClick={() => setSelected(s.season)}
+                >
+                  <td className="season-cell">{s.displayLabel}</td>
+                  <td className="num pos-cell">
+                    <span className="pos-pill">{s.leaguePosition}</span>
+                  </td>
+                  <td className="num">{s.leaguePoints}</td>
+                  <td className="num">{s.leagueWins}</td>
+                  <td className="num">{s.leagueDraws}</td>
+                  <td className="num">{s.leagueLosses}</td>
+                  <td className="num">{gd(s)}</td>
+                  <td className="notable">{notable(s)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Right: current season panel */}
+        {panel && (
+          <aside
+            style={{
+              padding: 28,
+              border: '1px solid var(--rule)',
+              background: 'var(--paper-2)',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            {/* Head */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', borderBottom: '1px solid var(--rule)', paddingBottom: 16, marginBottom: 0 }}>
+              <div className="kicker" style={{ color: 'var(--accent)' }}>
+                {panel.displayLabel}
+              </div>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 2 }}>
+                <span style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 56, lineHeight: 1, color: 'var(--accent)', letterSpacing: '-0.04em' }}>
+                  {panel.leaguePosition}
+                </span>
+                <span style={{ fontFamily: 'var(--body)', fontSize: 16, fontWeight: 500, verticalAlign: 'super', marginLeft: 2, color: 'var(--muted)' }}>
+                  {ordSuffix(panel.leaguePosition)}
+                </span>
+              </div>
+            </div>
+
+            {/* Stats grid 3×2 */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
+              {[
+                { n: panel.leaguePoints, label: 'Points' },
+                { n: panel.leagueWins, label: 'Wins' },
+                { n: panel.leagueDraws, label: 'Draws' },
+                { n: panel.leagueLosses, label: 'Losses' },
+                { n: panel.leagueGoalsFor, label: 'Goals for' },
+                { n: panel.leagueGoalsAgainst, label: 'Against' },
+              ].map(({ n, label }, i) => (
+                <div
+                  key={label}
+                  style={{
+                    padding: '16px 0',
+                    borderRight: (i + 1) % 3 !== 0 ? '1px solid var(--rule)' : 'none',
+                    borderBottom: i < 3 ? '1px solid var(--rule)' : 'none',
+                    textAlign: 'center',
+                  }}
+                >
+                  <div style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 28, lineHeight: 1, letterSpacing: '-0.01em', color: 'var(--ink)' }}>{n}</div>
+                  <div style={{ fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--muted)', marginTop: 6 }}>{label}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Divider */}
+            <div style={{ height: 1, background: 'var(--rule)', margin: '16px 0' }} />
+
+            {/* Top scorer / assister / tournament */}
+            {[
+              { label: 'Top scorer', val: `${panel.topScorer.name} · ${panel.topScorer.goals} goals` },
+              { label: 'Top assister', val: `${panel.topAssister.name} · ${panel.topAssister.assists ?? '—'} assists` },
+              ...(panel.internationalTournaments[0]
+                ? [{ label: panel.internationalTournaments[0].competition, val: `${panel.internationalTournaments[0].stage} — ${panel.internationalTournaments[0].result}` }]
+                : []),
+            ].map(({ label, val }) => (
+              <div key={label} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', gap: 16, fontSize: 13, borderBottom: '1px solid var(--rule)' }}>
+                <div style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', flexShrink: 0 }}>{label}</div>
+                <div style={{ textAlign: 'right', color: 'var(--ink)' }}><strong>{val}</strong></div>
+              </div>
+            ))}
+
+            {/* Season note */}
+            <p style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid var(--rule)', fontSize: 13, fontStyle: 'italic', color: 'var(--muted)', lineHeight: 1.55 }}>
+              {panel.seasonHighlight}
+            </p>
+
+            {/* Kits */}
+            <div style={{ marginTop: 24 }} id="kits">
+              <div className="kicker" style={{ color: 'var(--accent)', marginBottom: 12 }}>
+                {panel.displayLabel} Kits
+              </div>
+              <KitDisplay home={panel.kits.home} away={panel.kits.away} third={panel.kits.third} />
+            </div>
+          </aside>
+        )}
+      </div>
     </section>
   )
 }
