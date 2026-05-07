@@ -35,17 +35,17 @@ export default function Navbar({ clubName, leagueName, leagueId }: NavbarProps) 
     >
       <div
         className="max-w-[1280px] mx-auto px-8 flex justify-between items-center gap-6"
-        style={{ padding: '14px 32px' }}
+        style={{ padding: '22px 32px' }}
       >
         {/* Brand */}
         <div className="flex items-center gap-3">
           <div>
-            <div className="kicker" style={{ fontSize: 10 }}>Story of Futiball</div>
+            <div className="kicker" style={{ fontSize: 12 }}>Story of Futiball</div>
             <div
               style={{
                 fontFamily: 'var(--display)',
                 fontWeight: 'var(--display-weight)',
-                fontSize: 14,
+                fontSize: 18,
                 letterSpacing: '0.04em',
                 color: 'var(--ink)',
               }}
@@ -73,7 +73,7 @@ export default function Navbar({ clubName, leagueName, leagueId }: NavbarProps) 
             className="hidden md:flex gap-5"
             style={{
               fontFamily: 'var(--mono)',
-              fontSize: 11,
+              fontSize: 13,
               textTransform: 'uppercase',
               letterSpacing: '0.14em',
               color: 'var(--muted)',
