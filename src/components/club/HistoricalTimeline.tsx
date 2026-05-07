@@ -1,6 +1,5 @@
 import type { TimelineEvent } from '@/types/club'
 import SectionHeader from '@/components/ui/SectionHeader'
-import GlassCard from '@/components/ui/GlassCard'
 
 interface HistoricalTimelineProps {
   events: TimelineEvent[]
@@ -8,49 +7,60 @@ interface HistoricalTimelineProps {
 
 export default function HistoricalTimeline({ events }: HistoricalTimelineProps) {
   return (
-    <section>
-      <SectionHeader title="Club History" subtitle="Key moments that shaped the club's identity" />
+    <section id="history">
+      <SectionHeader kicker="Timeline" title="A History, Briefly" />
 
-      <div className="relative">
-        {/* Vertical connecting line */}
-        <div
-          className="absolute left-[2.2rem] md:left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2"
-          style={{ backgroundColor: 'rgba(255,255,255,0.90)' }}
-        />
+      <div style={{ borderTop: '1px solid var(--rule)' }}>
+        {events.map((event) => (
+          <article
+            key={event.year}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '120px 1fr 6fr',
+              gap: 24,
+              alignItems: 'baseline',
+              padding: '22px 0',
+              borderBottom: '1px solid var(--rule)',
+            }}
+          >
+            {/* Year */}
+            <div
+              style={{
+                fontFamily: 'var(--display)',
+                fontWeight: 'var(--display-weight)' as 'bold',
+                fontSize: 'clamp(32px, 4vw, 52px)',
+                lineHeight: 1,
+                letterSpacing: '-0.02em',
+                color: 'var(--ink)',
+              }}
+            >
+              {event.year}
+            </div>
 
-        <div className="space-y-6">
-          {events.map((event, index) => {
-            const isRight = index % 2 !== 0
+            {/* Accent rule */}
+            <div
+              style={{
+                height: 1,
+                background: 'var(--accent)',
+                alignSelf: 'center',
+                marginTop: 4,
+              }}
+            />
 
-            return (
-              <div
-                key={event.year}
-                className={`flex items-start gap-4 md:gap-0 ${isRight ? 'md:flex-row-reverse' : 'md:flex-row'}`}
-              >
-                {/* Card */}
-                <div className={`flex-1 ${isRight ? 'md:pl-10' : 'md:pr-10'}`}>
-                  <GlassCard className="p-4 hover:shadow-lg transition-shadow">
-                    <p className="text-sm font-black mb-1" style={{ color: 'var(--club-primary)' }}>
-                      {event.year}
-                    </p>
-                    <p className="text-sm text-gray-800 leading-relaxed font-medium">{event.event}</p>
-                  </GlassCard>
-                </div>
-
-                {/* Dot */}
-                <div
-                  className="relative flex-shrink-0 w-9 h-9 rounded-full border-2 bg-white flex items-center justify-center z-10 shadow-md md:mx-auto"
-                  style={{ borderColor: 'var(--club-accent)' }}
-                >
-                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'var(--club-primary)' }} />
-                </div>
-
-                {/* Mirror spacer desktop */}
-                <div className="hidden md:block flex-1" />
-              </div>
-            )
-          })}
-        </div>
+            {/* Event text */}
+            <p
+              style={{
+                fontSize: 16,
+                lineHeight: 1.55,
+                color: 'var(--ink)',
+                margin: 0,
+                maxWidth: '64ch',
+              }}
+            >
+              {event.event}
+            </p>
+          </article>
+        ))}
       </div>
     </section>
   )
