@@ -11,10 +11,10 @@
 
     /* Editorial palette — light mode defaults */
     --ink: #0c0a09;
-    --paper: #f7f3ed;
-    --paper-2: #efeae1;
-    --rule: rgba(0, 0, 0, 0.12);
-    --muted: rgba(0, 0, 0, 0.55);
+    --paper: #dc5555;
+    --paper-2: #c94444;
+    --rule: rgba(0, 0, 0, 0.18);
+    --muted: rgba(0, 0, 0, 0.62);
 
     /* Typography */
     --display: 'Playfair Display', Georgia, serif;
@@ -31,17 +31,17 @@
   /* Dark mode — toggled by ThemeContext adding .dark-mode to <html> */
   html.dark-mode {
     --ink: #f3efe7;
-    --paper: #0c0a09;
-    --paper-2: #171513;
-    --rule: rgba(255, 255, 255, 0.12);
-    --muted: rgba(255, 255, 255, 0.55);
+    --paper: #820202;
+    --paper-2: #6e0101;
+    --rule: rgba(255, 255, 255, 0.15);
+    --muted: rgba(255, 255, 255, 0.60);
   }
 
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
 
   body {
-    background-color: color-mix(in srgb, var(--accent) 5%, var(--paper));
+    background-color: var(--paper);
     color: var(--ink);
     font-family: var(--body);
     font-size: 16px;
