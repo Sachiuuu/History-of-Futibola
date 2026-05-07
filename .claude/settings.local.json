@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\Daniel\\\\Desktop\\\\Personal Projects\\\\Story of Futiball\" -Recurse -Force)",
+      "Bash(Select-Object FullName, PSIsContainer)",
+      "Bash(Sort-Object FullName)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\Daniel\\\\Desktop\\\\Personal Projects\\\\Story of Futiball\" -Force | ForEach-Object { $_.FullName })",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --no-src-dir --import-alias \"@/*\" --yes)",
+      "Bash(npm init *)",
+      "Bash(npm install *)",
+      "Bash(node -e \"const next = require\\('./node_modules/next/package.json'\\); const tw = require\\('./node_modules/tailwindcss/package.json'\\); console.log\\('Next.js:', next.version\\); console.log\\('Tailwind:', tw.version\\);\")",
+      "Bash(node -e \"const tw = require\\('./node_modules/tailwindcss/package.json'\\); console.log\\(JSON.stringify\\(tw.exports ? Object.keys\\(tw.exports\\) : 'no exports', null, 2\\)\\);\")",
+      "Bash(node -e \"const m = require\\('./node_modules/tailwindcss'\\); console.log\\(typeof m, Object.keys\\(m || {}\\).slice\\(0, 10\\)\\);\")",
+      "Bash(node *)",
+      "Bash(npx tsc *)",
+      "Bash(npx next *)",
+      "Bash(git init *)",
+      "Bash(git add *)"
+    ]
+  }
+}

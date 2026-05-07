@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --club-primary: #C8102E;
+    --club-secondary: #F6EB61;
+    --club-accent: #F6EB61;
+    --club-dark: #0D0000;
+    --club-glass-tint: rgba(200, 16, 46, 0.07);
+    --club-glass-stroke: rgba(200, 16, 46, 0.22);
+    --club-text-dark: #ffffff;
+    --club-text-light: #0D0000;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #f8f7f5;
+    color: #1a1a1a;
+    font-family: system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer components {
+  .glass-card {
+    background-color: var(--club-glass-tint);
+    border: 1px solid var(--club-glass-stroke);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 1rem;
+  }
+
+  .glass-card-strong {
+    background-color: var(--club-glass-tint);
+    border: 1px solid var(--club-glass-stroke);
+    backdrop-filter: blur(20px) saturate(1.5);
+    -webkit-backdrop-filter: blur(20px) saturate(1.5);
+    border-radius: 1rem;
+  }
+
+  .section-divider {
+    width: 3rem;
+    height: 3px;
+    background-color: var(--club-accent);
+    border-radius: 9999px;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease forwards;
+}

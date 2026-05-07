@@ -1,0 +1,54 @@
+{
+  "clubId": "liverpool",
+  "season": "2022-23",
+  "displayLabel": "2022/23 Season",
+  "leaguePosition": 5,
+  "leaguePoints": 67,
+  "leagueWins": 19,
+  "leagueDraws": 10,
+  "leagueLosses": 9,
+  "leagueGoalsFor": 75,
+  "leagueGoalsAgainst": 47,
+  "leagueId": "premier-league",
+  "kits": {
+    "home": {
+      "image": "/images/kits/liverpool/2022-23/home.png",
+      "primaryColor": "#C8102E",
+      "description": "Bold red with Nike Swoosh"
+    },
+    "away": {
+      "image": "/images/kits/liverpool/2022-23/away.png",
+      "primaryColor": "#2C5F8A",
+      "description": "Teal blue with red trim"
+    },
+    "third": {
+      "image": "/images/kits/liverpool/2022-23/third.png",
+      "primaryColor": "#000000",
+      "description": "Blackout with neon yellow accents"
+    }
+  },
+  "internationalTournaments": [
+    {
+      "competition": "UEFA Champions League",
+      "stage": "Round of 16",
+      "result": "Eliminated by Real Madrid (6–2 agg)",
+      "groupStage": "Qualified as group winners",
+      "icon": "champions-league"
+    }
+  ],
+  "topScorer": {
+    "name": "Mohamed Salah",
+    "goals": 19,
+    "image": "/images/clubs/liverpool/players/salah.jpg",
+    "nationality": "Egypt",
+    "position": "Right Winger"
+  },
+  "topAssister": {
+    "name": "Mohamed Salah",
+    "assists": 12,
+    "image": "/images/clubs/liverpool/players/salah.jpg",
+    "nationality": "Egypt",
+    "position": "Right Winger"
+  },
+  "seasonHighlight": "A turbulent season by Liverpool's recent standards. Injury and form issues plagued the squad throughout, resulting in a fifth-place finish and early Champions League exit — the first sign that Klopp's squad needed significant rebuilding."
+}

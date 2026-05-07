@@ -1,0 +1,228 @@
+{
+  "id": "liverpool",
+  "name": "Liverpool FC",
+  "shortName": "Liverpool",
+  "nickname": "The Reds",
+  "leagueId": "premier-league",
+  "country": "England",
+  "city": "Liverpool",
+  "foundedYear": 1892,
+  "badge": "/images/clubs/liverpool/badge.png",
+  "stadium": {
+    "name": "Anfield",
+    "image": "/images/clubs/liverpool/stadium.jpg",
+    "capacity": 61276,
+    "builtYear": 1884,
+    "location": "Anfield, Liverpool"
+  },
+  "description": "Liverpool Football Club is one of the most successful and supported clubs in the world. Founded in 1892 and based at the iconic Anfield stadium, the Reds have been European royalty since the 1970s. Their passionate fanbase, defined by the legendary anthem 'You'll Never Walk Alone', creates an atmosphere that rivals any in world football. Liverpool's philosophy has always centred on attacking, relentless pressing football — a style that reached its modern zenith under Jürgen Klopp.",
+  "differentiator": "No club in English football history has won the European Cup / Champions League as many times as Liverpool's six titles. Their 2018–19 and 2021–22 domestic cup double campaigns, combined with their Champions League pedigree, cement their status as England's greatest ever continental force.",
+  "theme": {
+    "primaryColor": "#C8102E",
+    "secondaryColor": "#F6EB61",
+    "accentColor": "#F6EB61",
+    "darkColor": "#0D0000",
+    "glassTint": "rgba(200, 16, 46, 0.07)",
+    "glassStroke": "rgba(200, 16, 46, 0.22)",
+    "textOnDark": "#FFFFFF",
+    "textOnLight": "#0D0000"
+  },
+  "trophies": {
+    "leagueTitles": 20,
+    "breakdown": [
+      {
+        "competition": "First Division / Premier League",
+        "count": 20,
+        "icon": "league",
+        "years": [1901, 1906, 1922, 1923, 1947, 1964, 1966, 1973, 1976, 1977, 1979, 1980, 1982, 1983, 1984, 1986, 1988, 1990, 2020, 2024]
+      },
+      {
+        "competition": "UEFA Champions League",
+        "count": 6,
+        "icon": "champions-league",
+        "years": [1977, 1978, 1981, 1984, 2005, 2019]
+      },
+      {
+        "competition": "UEFA Cup / Europa League",
+        "count": 3,
+        "icon": "europa",
+        "years": [1973, 1976, 2001]
+      },
+      {
+        "competition": "UEFA Super Cup",
+        "count": 4,
+        "icon": "super-cup",
+        "years": [1977, 2001, 2005, 2019]
+      },
+      {
+        "competition": "FIFA Club World Cup",
+        "count": 1,
+        "icon": "cwc",
+        "years": [2019]
+      },
+      {
+        "competition": "FA Cup",
+        "count": 8,
+        "icon": "fa-cup",
+        "years": [1965, 1974, 1986, 1989, 1992, 2001, 2006, 2022]
+      },
+      {
+        "competition": "League Cup",
+        "count": 10,
+        "icon": "league-cup",
+        "years": [1981, 1982, 1983, 1984, 1995, 2001, 2003, 2012, 2022, 2024]
+      }
+    ]
+  },
+  "historicalTimeline": [
+    {
+      "year": 1892,
+      "event": "Founded by John Houlding after a dispute with Everton FC over Anfield's rent — one feud changed English football forever."
+    },
+    {
+      "year": 1965,
+      "event": "Won the FA Cup for the first time under Bill Shankly, the manager who transformed Liverpool from a Second Division club to a European force."
+    },
+    {
+      "year": 1977,
+      "event": "First European Cup triumph in Rome — Terry McDermott, Tommy Smith and Phil Neal scored in a 3–1 win over Borussia Mönchengladbach."
+    },
+    {
+      "year": 1984,
+      "event": "Fourth European Cup won in Rome — beat AS Roma on penalties on their own ground. The greatest display of nerve in English football history."
+    },
+    {
+      "year": 1989,
+      "event": "The Hillsborough disaster claimed 97 Liverpool supporters. The tragedy reshaped English football and the club's identity permanently."
+    },
+    {
+      "year": 2005,
+      "event": "The Miracle of Istanbul — 3–0 down at half-time to AC Milan in the Champions League final, Liverpool recovered to win on penalties."
+    },
+    {
+      "year": 2015,
+      "event": "Jürgen Klopp appointed manager, beginning the most decorated era in the club's modern history."
+    },
+    {
+      "year": 2019,
+      "event": "Champions League won in Madrid with a 2–0 victory over Tottenham. Followed a month later by the FIFA Club World Cup title."
+    },
+    {
+      "year": 2020,
+      "event": "Premier League title won with a record 99 points — ending the club's 30-year wait for a top-flight championship."
+    },
+    {
+      "year": 2022,
+      "event": "Domestic cup double — FA Cup and League Cup won in the same season, both on penalties, with Klopp's side going 128 games unbeaten in cup competition."
+    },
+    {
+      "year": 2024,
+      "event": "Premier League title won under Arne Slot in his debut season — 20th league title in the club's history."
+    }
+  ],
+  "records": {
+    "mostLeagueGoals": {
+      "player": "Roger Hunt",
+      "value": 245,
+      "unit": "goals"
+    },
+    "mostAppearances": {
+      "player": "Jamie Carragher",
+      "value": 737,
+      "unit": "appearances"
+    },
+    "mostGoalsAllCompetitions": {
+      "player": "Ian Rush",
+      "value": 346,
+      "unit": "goals"
+    },
+    "biggestWin": {
+      "description": "11-0 vs Strömsgodset (UEFA Cup)",
+      "year": 1974
+    },
+    "recordTransferFee": {
+      "player": "Darwin Núñez",
+      "value": "£85 million",
+      "year": 2022
+    },
+    "recordAttendance": {
+      "description": "61,905 vs Wolverhampton Wanderers",
+      "year": 1952
+    }
+  },
+  "legends": [
+    {
+      "id": "steven-gerrard",
+      "name": "Steven Gerrard",
+      "position": "Central Midfielder",
+      "nationality": "England",
+      "yearsActive": "1998–2015",
+      "image": "/images/clubs/liverpool/legends/steven-gerrard.jpg",
+      "careerGoals": 186,
+      "careerAppearances": 710,
+      "bio": "The captain who defined a generation. Gerrard embodied everything Liverpool stood for — passion, leadership and the capacity to produce the extraordinary at the most critical moments. His performances in the 2005 Champions League final and the 2006 FA Cup final are among the greatest individual displays in football history.",
+      "trophies": ["Champions League", "UEFA Cup", "FA Cup x2", "League Cup x3", "UEFA Super Cup", "Community Shield"]
+    },
+    {
+      "id": "kenny-dalglish",
+      "name": "Kenny Dalglish",
+      "position": "Forward",
+      "nationality": "Scotland",
+      "yearsActive": "1977–1990",
+      "image": "/images/clubs/liverpool/legends/kenny-dalglish.jpg",
+      "careerGoals": 172,
+      "careerAppearances": 515,
+      "bio": "Widely regarded as Liverpool's greatest ever player and one of the finest footballers Britain has produced. Dalglish bridged the Shankly/Paisley era with his own management, winning the league and FA Cup double as player-manager in 1986.",
+      "trophies": ["First Division x6", "European Cup x3", "FA Cup x3", "League Cup x4"]
+    },
+    {
+      "id": "ian-rush",
+      "name": "Ian Rush",
+      "position": "Forward",
+      "nationality": "Wales",
+      "yearsActive": "1980–1987, 1988–1996",
+      "image": "/images/clubs/liverpool/legends/ian-rush.jpg",
+      "careerGoals": 346,
+      "careerAppearances": 660,
+      "bio": "Liverpool's all-time leading scorer. Rush was a predator in the purest sense — clinical, relentless and capable of winning games on his own. His five FA Cup final goals remain an unbeaten record.",
+      "trophies": ["First Division x5", "European Cup", "FA Cup x5", "League Cup x5"]
+    },
+    {
+      "id": "thierry-henry",
+      "name": "Mohamed Salah",
+      "position": "Right Winger",
+      "nationality": "Egypt",
+      "yearsActive": "2017–present",
+      "image": "/images/clubs/liverpool/legends/mohamed-salah.jpg",
+      "careerGoals": 232,
+      "careerAppearances": 360,
+      "bio": "The Egyptian King. Salah arrived in 2017 and immediately broke the Premier League single-season scoring record with 32 goals. He is Liverpool's greatest modern-era scorer and one of the elite forwards of his generation.",
+      "trophies": ["Champions League", "Premier League x2", "FA Cup x2", "League Cup x3", "FIFA Club World Cup", "UEFA Super Cup"]
+    },
+    {
+      "id": "virgil-van-dijk",
+      "name": "Virgil van Dijk",
+      "position": "Centre-Back",
+      "nationality": "Netherlands",
+      "yearsActive": "2018–present",
+      "image": "/images/clubs/liverpool/legends/virgil-van-dijk.jpg",
+      "careerGoals": 32,
+      "careerAppearances": 285,
+      "bio": "The defender who completed Klopp's Liverpool. Van Dijk's arrival in January 2018 was the catalyst for the Champions League run that culminated in Madrid 2019. The UEFA Men's Player of the Year in 2019, he transformed Liverpool's defensive identity.",
+      "trophies": ["Champions League", "Premier League", "FA Cup x2", "League Cup x3", "FIFA Club World Cup", "UEFA Super Cup"]
+    },
+    {
+      "id": "robbie-fowler",
+      "name": "Robbie Fowler",
+      "position": "Forward",
+      "nationality": "England",
+      "yearsActive": "1993–2001, 2006–2007",
+      "image": "/images/clubs/liverpool/legends/robbie-fowler.jpg",
+      "careerGoals": 183,
+      "careerAppearances": 369,
+      "bio": "God. The nickname given to Fowler by the Kop tells you everything. A natural goalscorer with an instinctive finishing ability that rivalled anyone in world football during his peak years at Anfield.",
+      "trophies": ["UEFA Cup", "FA Cup x2", "League Cup x3"]
+    }
+  ],
+  "availableSeasons": ["2023-24", "2022-23", "2021-22", "2020-21", "2019-20"]
+}

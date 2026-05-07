@@ -1,0 +1,54 @@
+{
+  "clubId": "liverpool",
+  "season": "2023-24",
+  "displayLabel": "2023/24 Season",
+  "leaguePosition": 3,
+  "leaguePoints": 82,
+  "leagueWins": 24,
+  "leagueDraws": 10,
+  "leagueLosses": 4,
+  "leagueGoalsFor": 86,
+  "leagueGoalsAgainst": 41,
+  "leagueId": "premier-league",
+  "kits": {
+    "home": {
+      "image": "/images/kits/liverpool/2023-24/home.png",
+      "primaryColor": "#C8102E",
+      "description": "Classic all-red with Adidas three stripes"
+    },
+    "away": {
+      "image": "/images/kits/liverpool/2023-24/away.png",
+      "primaryColor": "#E1E0DF",
+      "description": "Silver grey with red accents"
+    },
+    "third": {
+      "image": "/images/kits/liverpool/2023-24/third.png",
+      "primaryColor": "#2E2E2E",
+      "description": "Dark charcoal with teal trim"
+    }
+  },
+  "internationalTournaments": [
+    {
+      "competition": "UEFA Europa League",
+      "stage": "Quarter-finals",
+      "result": "Eliminated by Atalanta (3–1 agg)",
+      "groupStage": "Qualified as group winners",
+      "icon": "europa"
+    }
+  ],
+  "topScorer": {
+    "name": "Mohamed Salah",
+    "goals": 18,
+    "image": "/images/clubs/liverpool/players/salah.jpg",
+    "nationality": "Egypt",
+    "position": "Right Winger"
+  },
+  "topAssister": {
+    "name": "Trent Alexander-Arnold",
+    "assists": 10,
+    "image": "/images/clubs/liverpool/players/taa.jpg",
+    "nationality": "England",
+    "position": "Right-Back"
+  },
+  "seasonHighlight": "Jürgen Klopp's final season in charge ended in a third-place finish. Despite falling short of the title, Liverpool lifted the League Cup — Klopp's farewell was marked by an outpouring of emotion across the football world."
+}

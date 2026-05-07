@@ -1,0 +1,60 @@
+{
+  "clubId": "liverpool",
+  "season": "2019-20",
+  "displayLabel": "2019/20 Season",
+  "leaguePosition": 1,
+  "leaguePoints": 99,
+  "leagueWins": 32,
+  "leagueDraws": 3,
+  "leagueLosses": 3,
+  "leagueGoalsFor": 85,
+  "leagueGoalsAgainst": 33,
+  "leagueId": "premier-league",
+  "kits": {
+    "home": {
+      "image": "/images/kits/liverpool/2019-20/home.png",
+      "primaryColor": "#C8102E",
+      "description": "Clean red with Nike Swoosh"
+    },
+    "away": {
+      "image": "/images/kits/liverpool/2019-20/away.png",
+      "primaryColor": "#FFFFFF",
+      "description": "All-white with red trim"
+    },
+    "third": {
+      "image": "/images/kits/liverpool/2019-20/third.png",
+      "primaryColor": "#004B87",
+      "description": "Royal blue with red Swoosh"
+    }
+  },
+  "internationalTournaments": [
+    {
+      "competition": "UEFA Champions League",
+      "stage": "Round of 16",
+      "result": "Eliminated by Atletico Madrid (3–2 agg)",
+      "groupStage": "Qualified as group winners",
+      "icon": "champions-league"
+    },
+    {
+      "competition": "FIFA Club World Cup",
+      "stage": "Winner",
+      "result": "Beat Flamengo 1–0 (AET)",
+      "icon": "cwc"
+    }
+  ],
+  "topScorer": {
+    "name": "Mohamed Salah",
+    "goals": 19,
+    "image": "/images/clubs/liverpool/players/salah.jpg",
+    "nationality": "Egypt",
+    "position": "Right Winger"
+  },
+  "topAssister": {
+    "name": "Trent Alexander-Arnold",
+    "assists": 13,
+    "image": "/images/clubs/liverpool/players/taa.jpg",
+    "nationality": "England",
+    "position": "Right-Back"
+  },
+  "seasonHighlight": "The Premier League title won with a record 99 points — 18 points clear of second place. Liverpool ended their 30-year wait for a league title, completing a set of every major domestic and European trophy available. The club was 25 points clear when the season was paused by COVID-19."
+}

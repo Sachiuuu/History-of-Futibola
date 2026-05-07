@@ -1,0 +1,54 @@
+{
+  "clubId": "liverpool",
+  "season": "2020-21",
+  "displayLabel": "2020/21 Season",
+  "leaguePosition": 3,
+  "leaguePoints": 69,
+  "leagueWins": 20,
+  "leagueDraws": 9,
+  "leagueLosses": 9,
+  "leagueGoalsFor": 68,
+  "leagueGoalsAgainst": 42,
+  "leagueId": "premier-league",
+  "kits": {
+    "home": {
+      "image": "/images/kits/liverpool/2020-21/home.png",
+      "primaryColor": "#C8102E",
+      "description": "Classic red with ribbed collar"
+    },
+    "away": {
+      "image": "/images/kits/liverpool/2020-21/away.png",
+      "primaryColor": "#FFD700",
+      "description": "Bright yellow with black trim"
+    },
+    "third": {
+      "image": "/images/kits/liverpool/2020-21/third.png",
+      "primaryColor": "#4A0E8F",
+      "description": "Deep purple with neon green accents"
+    }
+  },
+  "internationalTournaments": [
+    {
+      "competition": "UEFA Champions League",
+      "stage": "Quarter-finals",
+      "result": "Eliminated by Real Madrid (3–1 agg)",
+      "groupStage": "Qualified as group winners",
+      "icon": "champions-league"
+    }
+  ],
+  "topScorer": {
+    "name": "Mohamed Salah",
+    "goals": 22,
+    "image": "/images/clubs/liverpool/players/salah.jpg",
+    "nationality": "Egypt",
+    "position": "Right Winger"
+  },
+  "topAssister": {
+    "name": "Trent Alexander-Arnold",
+    "assists": 9,
+    "image": "/images/clubs/liverpool/players/taa.jpg",
+    "nationality": "England",
+    "position": "Right-Back"
+  },
+  "seasonHighlight": "A difficult title defence marred by injuries — particularly a five-match winless run at Anfield, unprecedented in the modern era. The reigning champions finished third, ending a remarkable 68-game home unbeaten run."
+}

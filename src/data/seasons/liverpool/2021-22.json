@@ -1,0 +1,54 @@
+{
+  "clubId": "liverpool",
+  "season": "2021-22",
+  "displayLabel": "2021/22 Season",
+  "leaguePosition": 2,
+  "leaguePoints": 92,
+  "leagueWins": 28,
+  "leagueDraws": 8,
+  "leagueLosses": 2,
+  "leagueGoalsFor": 94,
+  "leagueGoalsAgainst": 26,
+  "leagueId": "premier-league",
+  "kits": {
+    "home": {
+      "image": "/images/kits/liverpool/2021-22/home.png",
+      "primaryColor": "#C8102E",
+      "description": "Classic red with white collar trim"
+    },
+    "away": {
+      "image": "/images/kits/liverpool/2021-22/away.png",
+      "primaryColor": "#E0E0E0",
+      "description": "Light grey with red and yellow accents"
+    },
+    "third": {
+      "image": "/images/kits/liverpool/2021-22/third.png",
+      "primaryColor": "#003DA5",
+      "description": "Deep blue with teal highlights"
+    }
+  },
+  "internationalTournaments": [
+    {
+      "competition": "UEFA Champions League",
+      "stage": "Final",
+      "result": "Runner-up — Lost to Real Madrid 0–1 (Paris)",
+      "groupStage": "Qualified as group winners",
+      "icon": "champions-league"
+    }
+  ],
+  "topScorer": {
+    "name": "Mohamed Salah",
+    "goals": 23,
+    "image": "/images/clubs/liverpool/players/salah.jpg",
+    "nationality": "Egypt",
+    "position": "Right Winger"
+  },
+  "topAssister": {
+    "name": "Mohamed Salah",
+    "assists": 13,
+    "image": "/images/clubs/liverpool/players/salah.jpg",
+    "nationality": "Egypt",
+    "position": "Right Winger"
+  },
+  "seasonHighlight": "The greatest campaign in Liverpool's modern history. A quadruple was within reach — they won the FA Cup and League Cup (both on penalties), finished second in the league by one point to City with 92, and reached the Champions League final where Courtois's heroics denied them a seventh European title."
+}

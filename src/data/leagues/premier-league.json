@@ -1,0 +1,9 @@
+{
+  "id": "premier-league",
+  "name": "Premier League",
+  "country": "England",
+  "logo": "/images/leagues/premier-league.svg",
+  "primaryColor": "#3D195B",
+  "accentColor": "#00FF85",
+  "clubIds": ["liverpool"]
+}
