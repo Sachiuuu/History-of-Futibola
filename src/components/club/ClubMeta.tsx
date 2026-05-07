@@ -1,5 +1,4 @@
 import type { Club } from '@/types/club'
-import Badge from '@/components/ui/Badge'
 
 interface ClubMetaProps {
   club: Club
@@ -8,17 +7,26 @@ interface ClubMetaProps {
 export default function ClubMeta({ club }: ClubMetaProps) {
   const items = [
     { icon: '📍', label: `${club.city}, ${club.country}` },
-    { icon: '🏟️', label: `${club.stadium.name} (${club.stadium.capacity.toLocaleString()} cap.)` },
-    { icon: '📅', label: `Founded ${club.foundedYear}` },
+    { icon: '🏟️', label: `${club.stadium.name} · ${club.stadium.capacity.toLocaleString()} seats` },
+    { icon: '📅', label: `Est. ${club.foundedYear}` },
   ]
 
   return (
-    <div className="flex flex-wrap gap-2 mt-6">
+    <div className="flex flex-wrap gap-2 mt-4">
       {items.map((item) => (
-        <Badge key={item.label} variant="ghost" className="text-sm">
+        <span
+          key={item.label}
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium text-white"
+          style={{
+            background: 'rgba(255,255,255,0.18)',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
+            border: '1px solid rgba(255,255,255,0.35)',
+          }}
+        >
           <span>{item.icon}</span>
           <span>{item.label}</span>
-        </Badge>
+        </span>
       ))}
     </div>
   )
