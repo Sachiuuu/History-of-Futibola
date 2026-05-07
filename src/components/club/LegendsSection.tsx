@@ -8,9 +8,15 @@ interface LegendsSectionProps {
 
 export default function LegendsSection({ legends }: LegendsSectionProps) {
   return (
-    <section>
-      <SectionHeader title="Club Legends" subtitle="The icons who defined the club's history" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+    <section id="legends">
+      <SectionHeader kicker="Hall of Fame" title="Legends of the Club" />
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: '36px 28px',
+        }}
+      >
         {legends.map((legend) => (
           <LegendCard key={legend.id} legend={legend} />
         ))}
