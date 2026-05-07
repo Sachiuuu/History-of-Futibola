@@ -5,9 +5,27 @@ interface ClubHeroProps {
   club: Club
 }
 
+function ordinal(n: number): string {
+  const s = ['th', 'st', 'nd', 'rd']
+  const v = n % 100
+  return s[(v - 20) % 10] || s[v] || s[0]
+}
+
 export default function ClubHero({ club }: ClubHeroProps) {
+  const leagueLabel = club.leagueId
+    .replace(/-/g, ' ')
+    .replace(/\b\w/g, (c: string) => c.toUpperCase())
+
+  const nameParts = club.name.split(' ')
+  const titleLine1 = nameParts.slice(0, -1).join(' ') || club.name
+  const titleLine2 = nameParts.length > 1 ? nameParts[nameParts.length - 1] : ''
+
   return (
-    <section className="relative h-[70vh] min-h-[500px] flex items-end overflow-hidden">
+    <section
+      id="overview"
+      className="relative overflow-hidden flex items-end"
+      style={{ minHeight: '86vh', background: '#0c0a09' }}
+    >
       {/* Stadium background */}
       <div className="absolute inset-0">
         <Image
@@ -18,42 +36,109 @@ export default function ClubHero({ club }: ClubHeroProps) {
           priority
           sizes="100vw"
         />
-        {/* Gradient overlay using club dark color */}
+        {/* Gradient overlay */}
         <div
           className="absolute inset-0"
           style={{
-            background: `linear-gradient(to bottom,
-              color-mix(in srgb, var(--club-dark) 30%, transparent) 0%,
-              transparent 40%,
-              color-mix(in srgb, var(--club-dark) 85%, transparent) 100%
-            )`,
+            background:
+              'linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.08) 55%, rgba(0,0,0,0.48) 100%)',
           }}
         />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-        <div className="flex items-end gap-6">
-          {/* Badge */}
-          <div className="relative w-20 h-20 md:w-28 md:h-28 flex-shrink-0 drop-shadow-2xl">
+      <div
+        className="relative z-10 w-full max-w-[1280px] mx-auto"
+        style={{ padding: '56px 32px 48px' }}
+      >
+        {/* Meta top row */}
+        <div
+          className="flex items-center gap-2 mb-7"
+          style={{
+            fontFamily: 'var(--mono)',
+            fontSize: 11,
+            letterSpacing: '0.16em',
+            color: 'rgba(255,255,255,0.85)',
+          }}
+        >
+          <span>CLUB PROFILE</span>
+          <span style={{ color: 'rgba(255,255,255,0.4)' }}>·</span>
+          <span>{club.country.toUpperCase()} · {leagueLabel.toUpperCase()}</span>
+          <span style={{ color: 'rgba(255,255,255,0.4)' }}>·</span>
+          <span>EST. {club.foundedYear}</span>
+        </div>
+
+        {/* Big display title */}
+        <h1 className="hero-title">
+          <span className="block" style={{ color: '#fff' }}>{titleLine1}</span>
+          {titleLine2 && (
+            <span
+              className="block italic"
+              style={{
+                fontWeight: 400,
+                color: 'var(--accent)',
+              }}
+            >
+              {titleLine2}
+            </span>
+          )}
+        </h1>
+
+        {/* Bottom strip — divider + crest + meta items */}
+        <div
+          className="flex items-end gap-8"
+          style={{ borderTop: '1px solid rgba(255,255,255,0.18)', paddingTop: 28 }}
+        >
+          {/* Club badge */}
+          <div className="relative flex-shrink-0 w-[72px] h-[72px]">
             <Image
               src={club.badge}
               alt={`${club.name} badge`}
               fill
               className="object-contain"
-              sizes="112px"
+              sizes="72px"
             />
           </div>
 
-          {/* Text */}
-          <div className="animate-fade-up">
-            <p className="text-sm font-medium uppercase tracking-widest mb-1" style={{ color: 'var(--club-accent)' }}>
-              {club.country} · {club.leagueId.replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase())}
-            </p>
-            <h1 className="text-4xl md:text-6xl font-black text-white leading-none tracking-tight">
-              {club.name}
-            </h1>
-            <p className="mt-2 text-lg text-white/70 font-medium italic">&ldquo;{club.nickname}&rdquo;</p>
+          {/* Meta strip */}
+          <div
+            className="grid gap-8 flex-1"
+            style={{ gridTemplateColumns: 'repeat(5, 1fr)' }}
+          >
+            {[
+              { label: 'Nickname', value: club.nickname },
+              { label: 'Founded', value: club.foundedYear },
+              { label: 'Ground', value: club.stadium.name },
+              { label: 'Capacity', value: club.stadium.capacity.toLocaleString() },
+              { label: 'City', value: club.city },
+            ].map(({ label, value }) => (
+              <div key={label}>
+                <div
+                  style={{
+                    fontFamily: 'var(--mono)',
+                    fontSize: 10,
+                    letterSpacing: '0.16em',
+                    textTransform: 'uppercase',
+                    color: 'rgba(255,255,255,0.6)',
+                    marginBottom: 6,
+                  }}
+                >
+                  {label}
+                </div>
+                <div
+                  style={{
+                    fontFamily: 'var(--display)',
+                    fontWeight: 'var(--display-weight)' as 'bold',
+                    fontSize: 20,
+                    letterSpacing: '-0.01em',
+                    color: '#fff',
+                    lineHeight: 1.1,
+                  }}
+                >
+                  {value}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
