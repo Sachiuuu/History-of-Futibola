@@ -1,13 +1,47 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import type { TrophyRecord } from '@/types/club'
-import TrophyIcon from '@/components/ui/TrophyIcon'
+import type { TrophyRecord, TrophyEntry } from '@/types/club'
 import SectionHeader from '@/components/ui/SectionHeader'
-import GlassCard from '@/components/ui/GlassCard'
 
 interface TrophyDisplayProps {
   trophies: TrophyRecord
+}
+
+function TrophyGlyph({ kind }: { kind: string }) {
+  if (/Champions|European Cup/.test(kind)) {
+    return (
+      <svg viewBox="0 0 80 80" width="100%" aria-hidden="true">
+        <circle cx="40" cy="40" r="32" fill="none" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="40" cy="40" r="16" fill="currentColor" opacity="0.15" />
+        <circle cx="40" cy="40" r="6" fill="currentColor" />
+      </svg>
+    )
+  }
+  if (/League|Community/.test(kind)) {
+    return (
+      <svg viewBox="0 0 80 80" width="100%" aria-hidden="true">
+        <rect x="14" y="14" width="52" height="52" fill="none" stroke="currentColor" strokeWidth="1.5" />
+        <rect x="26" y="26" width="28" height="28" fill="currentColor" opacity="0.15" />
+        <rect x="36" y="36" width="8" height="8" fill="currentColor" />
+      </svg>
+    )
+  }
+  if (/Cup|Europa|Shield/.test(kind)) {
+    return (
+      <svg viewBox="0 0 80 80" width="100%" aria-hidden="true">
+        <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="currentColor" strokeWidth="1.5" />
+        <polygon points="40,22 58,40 40,58 22,40" fill="currentColor" opacity="0.15" />
+        <circle cx="40" cy="40" r="4" fill="currentColor" />
+      </svg>
+    )
+  }
+  return (
+    <svg viewBox="0 0 80 80" width="100%" aria-hidden="true">
+      <circle cx="40" cy="40" r="30" fill="currentColor" opacity="0.12" />
+      <circle cx="40" cy="40" r="6" fill="currentColor" />
+    </svg>
+  )
 }
 
 function AnimatedCount({ target, visible }: { target: number; visible: boolean }) {
@@ -15,22 +49,21 @@ function AnimatedCount({ target, visible }: { target: number; visible: boolean }
 
   useEffect(() => {
     if (!visible) return
-    let start = 0
-    const duration = 1200
-    const step = Math.ceil(target / (duration / 16))
+    let current = 0
+    const step = Math.max(1, Math.ceil(target / 40))
     const timer = setInterval(() => {
-      start += step
-      if (start >= target) {
+      current += step
+      if (current >= target) {
         setCount(target)
         clearInterval(timer)
       } else {
-        setCount(start)
+        setCount(current)
       }
-    }, 16)
+    }, 30)
     return () => clearInterval(timer)
   }, [visible, target])
 
-  return <span>{count}</span>
+  return <span>×{count}</span>
 }
 
 export default function TrophyDisplay({ trophies }: TrophyDisplayProps) {
@@ -48,38 +81,92 @@ export default function TrophyDisplay({ trophies }: TrophyDisplayProps) {
     return () => observer.disconnect()
   }, [])
 
-  return (
-    <section ref={ref}>
-      <SectionHeader title="Trophy Cabinet" subtitle={`${trophies.leagueTitles} league titles and counting`} />
+  const total = trophies.breakdown.reduce((a, t) => a + t.count, 0)
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-        {trophies.breakdown.map((entry: import('@/types/club').TrophyEntry) => (
-          <GlassCard key={entry.competition} className="p-5 text-center hover:scale-[1.02] transition-transform cursor-default group">
-            <div className="flex justify-center mb-2">
-              <TrophyIcon type={entry.icon} size={64} spinning />
+  return (
+    <section id="trophies" ref={ref}>
+      <SectionHeader
+        kicker="Honours"
+        title="The Cabinet"
+        right={
+          <>
+            <span
+              style={{
+                fontFamily: 'var(--display)',
+                fontWeight: 800,
+                fontSize: 56,
+                color: 'var(--accent)',
+                lineHeight: 1,
+              }}
+            >
+              {total}
+            </span>
+            <span
+              style={{
+                fontFamily: 'var(--mono)',
+                fontSize: 11,
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: 'var(--muted)',
+                maxWidth: 120,
+              }}
+            >
+              major trophies
+            </span>
+          </>
+        }
+      />
+
+      {/* Trophy grid — shared borders */}
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          borderTop: '1px solid var(--rule)',
+          borderLeft: '1px solid var(--rule)',
+        }}
+      >
+        {trophies.breakdown.map((entry: TrophyEntry, i: number) => (
+          <article
+            key={entry.competition}
+            style={{
+              padding: 28,
+              borderRight: '1px solid var(--rule)',
+              borderBottom: '1px solid var(--rule)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 14,
+              background: 'transparent',
+              transition: 'background 0.18s ease',
+            }}
+            onMouseEnter={(e) => {
+              ;(e.currentTarget as HTMLElement).style.background = 'var(--accent-soft)'
+            }}
+            onMouseLeave={(e) => {
+              ;(e.currentTarget as HTMLElement).style.background = 'transparent'
+            }}
+          >
+            <div className="flex justify-between items-center">
+              <span style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--muted)', letterSpacing: '0.12em' }}>
+                № {String(i + 1).padStart(2, '0')}
+              </span>
+              <span style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 28, color: 'var(--accent)', lineHeight: 1 }}>
+                <AnimatedCount target={entry.count} visible={visible} />
+              </span>
             </div>
-            <p className="text-4xl font-black mb-1" style={{ color: 'var(--club-primary)' }}>
-              <AnimatedCount target={entry.count} visible={visible} />
-            </p>
-            <p className="text-xs font-semibold text-gray-600 leading-tight">{entry.competition}</p>
-            {/* Year pills */}
-            <div className="mt-3 flex flex-wrap gap-1 justify-center">
-              {entry.years.slice(0, 6).map((year: number) => (
-                <span
-                  key={year}
-                  className="text-[10px] px-1.5 py-0.5 rounded-full font-medium text-white"
-                  style={{ backgroundColor: 'var(--club-primary)', opacity: 0.7 }}
-                >
-                  {year}
-                </span>
-              ))}
-              {entry.years.length > 6 && (
-                <span className="text-[10px] px-1.5 py-0.5 rounded-full font-medium bg-gray-200 text-gray-600">
-                  +{entry.years.length - 6}
-                </span>
-              )}
+
+            <div style={{ width: 52, color: 'var(--ink)' }}>
+              <TrophyGlyph kind={entry.competition} />
             </div>
-          </GlassCard>
+
+            <h3 style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 20, lineHeight: 1.1, letterSpacing: '-0.01em', margin: '4px 0 0', color: 'var(--ink)' }}>
+              {entry.competition}
+            </h3>
+
+            <div style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--muted)', lineHeight: 1.7, wordSpacing: 4 }}>
+              {entry.years.join(' · ')}
+            </div>
+          </article>
         ))}
       </div>
     </section>
