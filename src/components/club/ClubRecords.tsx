@@ -1,48 +1,69 @@
 import type { ClubRecord } from '@/types/club'
-import SectionHeader from '@/components/ui/SectionHeader'
-import GlassCard from '@/components/ui/GlassCard'
 
 interface ClubRecordsProps {
   records: Record<string, ClubRecord>
 }
 
-const recordLabels: Record<string, string> = {
+const RECORD_LABELS: Record<string, string> = {
   mostLeagueGoals: 'Most League Goals',
   mostAppearances: 'Most Appearances',
-  mostGoalsAllCompetitions: 'Most Goals (All Competitions)',
+  mostGoalsAllCompetitions: 'Goals (All Comps)',
   biggestWin: 'Biggest Win',
-  recordTransferFee: 'Record Transfer Fee',
+  recordTransferFee: 'Record Transfer',
   recordAttendance: 'Record Attendance',
+  longestUnbeaten: 'Longest Unbeaten',
+}
+
+function recordValue(record: ClubRecord): string {
+  if (record.value !== undefined) return String(record.value)
+  if (record.description) return record.description.split(' ')[0]
+  return '—'
+}
+
+function recordSub(record: ClubRecord): string {
+  const parts: string[] = []
+  if (record.player) parts.push(record.player)
+  if (record.description && record.value === undefined) {
+    const rest = record.description.split(' ').slice(1).join(' ')
+    if (rest) parts.push(rest)
+  }
+  if (record.year) parts.push(String(record.year))
+  if (record.unit) parts.push(record.unit)
+  return parts.join(' · ')
 }
 
 export default function ClubRecords({ records }: ClubRecordsProps) {
+  const entries = Object.entries(records).slice(0, 5)
+
   return (
-    <section>
-      <SectionHeader title="Club Records" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {Object.entries(records).map(([key, record]) => (
-          <GlassCard key={key} className="p-5">
-            <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
-              {recordLabels[key] ?? key}
-            </p>
-            {record.player && (
-              <p className="font-bold text-gray-800">{record.player}</p>
-            )}
-            {record.description && (
-              <p className="font-bold text-gray-800">{record.description}</p>
-            )}
-            {record.value !== undefined && (
-              <p className="text-2xl font-black mt-1" style={{ color: 'var(--club-primary)' }}>
-                {record.value}
-                {record.unit && <span className="text-sm font-medium text-gray-500 ml-1">{record.unit}</span>}
-              </p>
-            )}
-            {record.year && (
-              <p className="text-xs text-gray-400 mt-1">{record.year}</p>
-            )}
-          </GlassCard>
-        ))}
-      </div>
-    </section>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: `repeat(${entries.length}, 1fr)`,
+        borderTop: '1px solid var(--rule)',
+        borderBottom: '1px solid var(--rule)',
+        marginTop: 64,
+      }}
+    >
+      {entries.map(([key, record], i) => (
+        <div
+          key={key}
+          style={{
+            padding: '22px 18px',
+            borderRight: i < entries.length - 1 ? '1px solid var(--rule)' : 'none',
+          }}
+        >
+          <div style={{ fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 8 }}>
+            {RECORD_LABELS[key] ?? key}
+          </div>
+          <div style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 36, lineHeight: 1, color: 'var(--ink)', letterSpacing: '-0.02em' }}>
+            {recordValue(record)}
+          </div>
+          <div style={{ fontSize: 12, marginTop: 6, color: 'var(--muted)' }}>
+            {recordSub(record)}
+          </div>
+        </div>
+      ))}
+    </div>
   )
 }
