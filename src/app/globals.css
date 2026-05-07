@@ -1,81 +1,181 @@
 @import "tailwindcss";
 
+/* =========================================================
+   CSS CUSTOM PROPERTIES — Editorial design system
+   ========================================================= */
 @layer base {
   :root {
-    --club-primary: #C8102E;
-    --club-secondary: #F6EB61;
-    --club-accent: #F6EB61;
-    --club-dark: #0D0000;
-    --club-glass-tint: rgba(200, 16, 46, 0.07);
-    --club-glass-stroke: rgba(200, 16, 46, 0.22);
-    --club-text-dark: #ffffff;
-    --club-text-light: #0D0000;
+    /* Club accent — overridden per-club via PageWrapper inline style */
+    --accent: #C8102E;
+    --accent-soft: rgba(200, 16, 46, 0.12);
+
+    /* Editorial palette — light mode defaults */
+    --ink: #0c0a09;
+    --paper: #f7f3ed;
+    --paper-2: #efeae1;
+    --rule: rgba(0, 0, 0, 0.12);
+    --muted: rgba(0, 0, 0, 0.55);
+
+    /* Typography */
+    --display: 'Playfair Display', Georgia, serif;
+    --display-weight: 800;
+    --body: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+
+    /* Legacy club vars — aliased to accent for backward compatibility */
+    --club-primary: var(--accent);
+    --club-accent: var(--accent);
+    --club-glass-stroke: var(--accent);
   }
 
-  * {
-    box-sizing: border-box;
+  /* Dark mode — toggled by ThemeContext adding .dark-mode to <html> */
+  html.dark-mode {
+    --ink: #f3efe7;
+    --paper: #0c0a09;
+    --paper-2: #171513;
+    --rule: rgba(255, 255, 255, 0.12);
+    --muted: rgba(255, 255, 255, 0.55);
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
 
   body {
-    background-color: #f8f7f5;
-    color: #1a1a1a;
-    font-family: system-ui, -apple-system, sans-serif;
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.55;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    transition: background-color 0.25s, color 0.25s;
   }
+
+  a { color: inherit; text-decoration: none; }
 }
 
+/* =========================================================
+   EDITORIAL COMPONENT STYLES
+   ========================================================= */
 @layer components {
-  /* White frosted glass — sits on top of vivid wavy background */
-  .glass-card {
-    background: rgba(255, 255, 255, 0.80);
-    border: 1px solid rgba(255, 255, 255, 0.55);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-radius: 1rem;
+  /* Typography primitives */
+  .kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
   }
 
-  .glass-card-strong {
-    background: rgba(255, 255, 255, 0.88);
-    border: 1px solid rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
-    border-radius: 1rem;
+  .section-title {
+    font-family: var(--display);
+    font-weight: var(--display-weight);
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin: 8px 0 0;
+    color: var(--ink);
   }
 
-  /* Very subtle blur for text that floats directly on the background */
-  .text-glass {
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    border-radius: 0.75rem;
-    padding: 1.5rem;
+  /* A thin rule between major sections */
+  .rule-band {
+    height: 1px;
+    background: var(--rule);
+    max-width: 1280px;
+    margin: 0 auto;
   }
 
-  .section-divider {
-    width: 3rem;
-    height: 3px;
-    background-color: var(--club-accent);
-    border-radius: 9999px;
-    margin-top: 0.5rem;
-    margin-bottom: 2rem;
+  /* Hero headline */
+  .hero-title {
+    font-family: var(--display);
+    font-weight: var(--display-weight);
+    font-size: clamp(64px, 12vw, 148px);
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    margin: 0 0 40px;
+    color: #fff;
   }
+
+  /* Editorial lede paragraph with drop-cap */
+  .lede {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(20px, 2.4vw, 28px);
+    line-height: 1.4;
+    letter-spacing: -0.005em;
+    margin: 0 0 24px;
+    color: var(--ink);
+  }
+  .lede::first-letter {
+    font-family: var(--display);
+    font-weight: var(--display-weight);
+    font-size: 4.2em;
+    float: left;
+    line-height: 0.9;
+    margin: 8px 14px 0 0;
+    color: var(--accent);
+  }
+
+  /* Season results table */
+  .season-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    font-family: var(--body);
+  }
+  .season-table th,
+  .season-table td {
+    text-align: left;
+    padding: 14px 12px;
+    border-bottom: 1px solid var(--rule);
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+  }
+  .season-table thead th {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .season-table .num { text-align: right; }
+  .season-table tbody tr { cursor: pointer; }
+  .season-table tbody tr:hover { background: var(--accent-soft); }
+  .season-table .season-cell {
+    font-family: var(--display);
+    font-weight: var(--display-weight);
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .season-table .pos-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    height: 28px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--mono);
+    font-size: 12px;
+    border-radius: 999px;
+    padding: 0 8px;
+  }
+  .season-table tr.current .pos-pill { background: var(--accent); color: #fff; }
+  .season-table tr.current { background: var(--accent-soft); }
+  .season-table .notable { color: var(--muted); font-size: 13px; }
 }
 
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
 @keyframes trophy-spin-3d {
   0%   { transform: perspective(400px) rotateY(0deg);    filter: brightness(1.05) drop-shadow(0 10px 20px rgba(0,0,0,0.22)); }
   20%  { transform: perspective(400px) rotateY(72deg);   filter: brightness(0.75) drop-shadow(0 6px 12px rgba(0,0,0,0.14)); }
   50%  { transform: perspective(400px) rotateY(180deg);  filter: brightness(0.45) drop-shadow(0 2px 6px rgba(0,0,0,0.08)); }
   80%  { transform: perspective(400px) rotateY(288deg);  filter: brightness(0.75) drop-shadow(0 6px 12px rgba(0,0,0,0.14)); }
   100% { transform: perspective(400px) rotateY(360deg);  filter: brightness(1.05) drop-shadow(0 10px 20px rgba(0,0,0,0.22)); }
-}
-
-@keyframes count-up {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fade-up {
@@ -88,10 +188,5 @@
   to   { opacity: 1; }
 }
 
-.animate-fade-up {
-  animation: fade-up 0.6s ease forwards;
-}
-
-.animate-fade-in {
-  animation: fade-in 0.4s ease forwards;
-}
+.animate-fade-up { animation: fade-up 0.6s ease forwards; }
+.animate-fade-in { animation: fade-in 0.4s ease forwards; }
