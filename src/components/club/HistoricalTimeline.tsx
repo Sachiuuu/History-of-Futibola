@@ -15,7 +15,7 @@ export default function HistoricalTimeline({ events }: HistoricalTimelineProps) 
         {/* Vertical connecting line */}
         <div
           className="absolute left-[2.2rem] md:left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2"
-          style={{ backgroundColor: 'rgba(255,255,255,0.35)' }}
+          style={{ backgroundColor: 'rgba(255,255,255,0.90)' }}
         />
 
         <div className="space-y-6">
