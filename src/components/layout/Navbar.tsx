@@ -8,7 +8,13 @@ interface NavbarProps {
 
 export default function Navbar({ clubName, leagueName, leagueId }: NavbarProps) {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-white/40 shadow-sm">
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md shadow-sm"
+      style={{
+        background: 'linear-gradient(to right, color-mix(in srgb, var(--club-primary) 6%, white 94%), color-mix(in srgb, var(--club-primary) 3%, white 97%))',
+        borderBottom: '1px solid var(--club-glass-stroke)',
+      }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center gap-2 text-sm">
         <Link href="/" className="font-bold text-gray-900 hover:opacity-70 transition-opacity">
           Story of Futiball
