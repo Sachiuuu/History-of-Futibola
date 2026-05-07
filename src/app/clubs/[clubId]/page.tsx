@@ -9,13 +9,12 @@ import PageWrapper from '@/components/layout/PageWrapper'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import ClubHero from '@/components/club/ClubHero'
-import ClubMeta from '@/components/club/ClubMeta'
 import ClubDescription from '@/components/club/ClubDescription'
-import HistoricalTimeline from '@/components/club/HistoricalTimeline'
+import ClubRecords from '@/components/club/ClubRecords'
 import TrophyDisplay from '@/components/club/TrophyDisplay'
+import HistoricalTimeline from '@/components/club/HistoricalTimeline'
 import SeasonSection from '@/components/club/SeasonSection'
 import LegendsSection from '@/components/club/LegendsSection'
-import ClubRecords from '@/components/club/ClubRecords'
 
 interface PageProps {
   params: Promise<{ clubId: string }>
@@ -48,27 +47,51 @@ export default async function ClubPage({ params }: PageProps) {
     })
   )
 
+  const leagueName = club.leagueId
+    .replace(/-/g, ' ')
+    .replace(/\b\w/g, (c: string) => c.toUpperCase())
+
   return (
     <PageWrapper theme={club.theme}>
-      <Navbar clubName={club.name} leagueName="Premier League" leagueId={club.leagueId} />
+      <Navbar clubName={club.name} leagueName={leagueName} leagueId={club.leagueId} />
 
+      {/* Hero — full bleed, no container padding */}
       <ClubHero club={club} />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20 space-y-20">
-        <div>
-          <ClubMeta club={club} />
-          <ClubDescription club={club} />
+      {/* Editorial intro: description + records strip */}
+      <ClubDescription club={club} />
+      <div className="rule-band" />
+
+      {/* Main content sections */}
+      <main>
+        {/* Trophies */}
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+          <TrophyDisplay trophies={club.trophies} />
         </div>
+        <div className="rule-band" />
 
-        <TrophyDisplay trophies={club.trophies} />
+        {/* Records strip — lives inside editorial section padding */}
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
+          <ClubRecords records={club.records} />
+        </div>
+        <div className="rule-band" style={{ marginTop: 0 }} />
 
-        <HistoricalTimeline events={club.historicalTimeline} />
+        {/* History */}
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+          <HistoricalTimeline events={club.historicalTimeline} />
+        </div>
+        <div className="rule-band" />
 
-        <SeasonSection availableSeasons={club.availableSeasons} seasonsData={seasonsData} />
+        {/* Seasons */}
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+          <SeasonSection availableSeasons={club.availableSeasons} seasonsData={seasonsData} />
+        </div>
+        <div className="rule-band" />
 
-        <LegendsSection legends={club.legends} />
-
-        <ClubRecords records={club.records} />
+        {/* Legends */}
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+          <LegendsSection legends={club.legends} />
+        </div>
       </main>
 
       <Footer />
