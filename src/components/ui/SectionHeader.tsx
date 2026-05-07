@@ -1,16 +1,28 @@
 interface SectionHeaderProps {
+  kicker?: string
   title: string
-  subtitle?: string
+  right?: React.ReactNode
 }
 
-export default function SectionHeader({ title, subtitle }: SectionHeaderProps) {
+export default function SectionHeader({ kicker, title, right }: SectionHeaderProps) {
   return (
-    <div className="mb-8">
-      <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight drop-shadow-md">{title}</h2>
-      <div className="section-divider" />
-      {subtitle && (
-        <p className="text-white text-sm mt-1 font-bold drop-shadow-md tracking-wide">{subtitle}</p>
+    <header
+      className="flex items-end justify-between gap-8 flex-wrap"
+      style={{
+        paddingBottom: 32,
+        borderBottom: '1px solid var(--rule)',
+        marginBottom: 48,
+      }}
+    >
+      <div>
+        {kicker && (
+          <div className="kicker" style={{ color: 'var(--accent)' }}>{kicker}</div>
+        )}
+        <h2 className="section-title">{title}</h2>
+      </div>
+      {right && (
+        <div className="flex items-baseline gap-3">{right}</div>
       )}
-    </div>
+    </header>
   )
 }
