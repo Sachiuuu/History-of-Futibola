@@ -6,9 +6,11 @@ interface SectionHeaderProps {
 export default function SectionHeader({ title, subtitle }: SectionHeaderProps) {
   return (
     <div className="mb-8">
-      <h2 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">{title}</h2>
+      <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight drop-shadow-md">{title}</h2>
       <div className="section-divider" />
-      {subtitle && <p className="text-gray-500 text-sm mt-1">{subtitle}</p>}
+      {subtitle && (
+        <p className="text-white/75 text-sm mt-1 font-medium drop-shadow-sm">{subtitle}</p>
+      )}
     </div>
   )
 }
