@@ -1,5 +1,7 @@
 'use client'
 
+import { useId } from 'react'
+
 /* Distinct SVG trophy shapes per competition type, with 3D spin via rotateY + brightness */
 
 const TROPHY_SHAPES: Record<string, (id: string) => React.ReactElement> = {
@@ -186,10 +188,9 @@ interface TrophyIconProps {
   spinning?: boolean
 }
 
-let idCounter = 0
-
 export default function TrophyIcon({ type = 'league', size = 80, spinning = true }: TrophyIconProps) {
-  const id = `trophy-${type}-${idCounter++}`
+  const uid = useId().replace(/:/g, '-')
+  const id = `trophy-${type}${uid}`
   const shape = TROPHY_SHAPES[type] ?? FALLBACK_SHAPE
 
   return (
