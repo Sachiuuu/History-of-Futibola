@@ -31,18 +31,18 @@
 @layer components {
   /* White frosted glass — sits on top of vivid wavy background */
   .glass-card {
-    background: rgba(255, 255, 255, 0.80);
-    border: 1px solid rgba(255, 255, 255, 0.55);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    background: rgba(255, 255, 255, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     border-radius: 1rem;
   }
 
   .glass-card-strong {
-    background: rgba(255, 255, 255, 0.88);
-    border: 1px solid rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
+    background: rgba(255, 255, 255, 0.30);
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    backdrop-filter: blur(26px);
+    -webkit-backdrop-filter: blur(26px);
     border-radius: 1rem;
   }
 
