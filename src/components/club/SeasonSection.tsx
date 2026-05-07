@@ -86,23 +86,26 @@ export default function SeasonSection({ availableSeasons, seasonsData }: SeasonS
         {panel && (
           <aside
             style={{
-              padding: 28,
-              border: '1px solid var(--rule)',
+              padding: 36,
+              border: '2px solid var(--accent)',
               background: 'var(--paper-2)',
               display: 'flex',
               flexDirection: 'column',
             }}
           >
             {/* Head */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', borderBottom: '1px solid var(--rule)', paddingBottom: 16, marginBottom: 0 }}>
-              <div className="kicker" style={{ color: 'var(--accent)' }}>
-                {panel.displayLabel}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', borderBottom: '1px solid var(--rule)', paddingBottom: 20, marginBottom: 0 }}>
+              <div>
+                <div className="kicker" style={{ color: 'var(--accent)' }}>Current Season</div>
+                <div style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 22, color: 'var(--ink)', marginTop: 4, letterSpacing: '-0.01em' }}>
+                  {panel.displayLabel}
+                </div>
               </div>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 2 }}>
-                <span style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 56, lineHeight: 1, color: 'var(--accent)', letterSpacing: '-0.04em' }}>
+                <span style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 72, lineHeight: 1, color: 'var(--accent)', letterSpacing: '-0.04em' }}>
                   {panel.leaguePosition}
                 </span>
-                <span style={{ fontFamily: 'var(--body)', fontSize: 16, fontWeight: 500, verticalAlign: 'super', marginLeft: 2, color: 'var(--muted)' }}>
+                <span style={{ fontFamily: 'var(--body)', fontSize: 20, fontWeight: 500, verticalAlign: 'super', marginLeft: 3, color: 'var(--muted)' }}>
                   {ordSuffix(panel.leaguePosition)}
                 </span>
               </div>
@@ -121,20 +124,20 @@ export default function SeasonSection({ availableSeasons, seasonsData }: SeasonS
                 <div
                   key={label}
                   style={{
-                    padding: '16px 0',
+                    padding: '20px 0',
                     borderRight: (i + 1) % 3 !== 0 ? '1px solid var(--rule)' : 'none',
                     borderBottom: i < 3 ? '1px solid var(--rule)' : 'none',
                     textAlign: 'center',
                   }}
                 >
-                  <div style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 28, lineHeight: 1, letterSpacing: '-0.01em', color: 'var(--ink)' }}>{n}</div>
-                  <div style={{ fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--muted)', marginTop: 6 }}>{label}</div>
+                  <div style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 36, lineHeight: 1, letterSpacing: '-0.01em', color: 'var(--ink)' }}>{n}</div>
+                  <div style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--muted)', marginTop: 8 }}>{label}</div>
                 </div>
               ))}
             </div>
 
             {/* Divider */}
-            <div style={{ height: 1, background: 'var(--rule)', margin: '16px 0' }} />
+            <div style={{ height: 1, background: 'var(--rule)', margin: '20px 0' }} />
 
             {/* Top scorer / assister / tournament */}
             {[
@@ -144,21 +147,21 @@ export default function SeasonSection({ availableSeasons, seasonsData }: SeasonS
                 ? [{ label: panel.internationalTournaments[0].competition, val: `${panel.internationalTournaments[0].stage} — ${panel.internationalTournaments[0].result}` }]
                 : []),
             ].map(({ label, val }) => (
-              <div key={label} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', gap: 16, fontSize: 13, borderBottom: '1px solid var(--rule)' }}>
-                <div style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', flexShrink: 0 }}>{label}</div>
+              <div key={label} style={{ display: 'flex', justifyContent: 'space-between', padding: '11px 0', gap: 16, fontSize: 14, borderBottom: '1px solid var(--rule)' }}>
+                <div style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', flexShrink: 0 }}>{label}</div>
                 <div style={{ textAlign: 'right', color: 'var(--ink)' }}><strong>{val}</strong></div>
               </div>
             ))}
 
             {/* Season note */}
-            <p style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid var(--rule)', fontSize: 13, fontStyle: 'italic', color: 'var(--muted)', lineHeight: 1.55 }}>
+            <p style={{ marginTop: 20, paddingTop: 20, borderTop: '1px solid var(--rule)', fontSize: 14, fontStyle: 'italic', color: 'var(--muted)', lineHeight: 1.6 }}>
               {panel.seasonHighlight}
             </p>
 
             {/* Kits */}
-            <div style={{ marginTop: 24 }} id="kits">
-              <div className="kicker" style={{ color: 'var(--accent)', marginBottom: 12 }}>
-                {panel.displayLabel} Kits
+            <div style={{ marginTop: 32, paddingTop: 24, borderTop: '2px solid var(--accent)' }} id="kits">
+              <div className="kicker" style={{ color: 'var(--accent)', marginBottom: 16 }}>
+                {panel.displayLabel} · Kits
               </div>
               <KitDisplay home={panel.kits.home} away={panel.kits.away} third={panel.kits.third} />
             </div>
