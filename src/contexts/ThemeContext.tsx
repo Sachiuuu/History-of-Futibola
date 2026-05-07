@@ -14,13 +14,18 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const stored = localStorage.getItem('sof-theme')
-    if (stored === 'dark') setIsDark(true)
+    if (stored === 'dark') {
+      setIsDark(true)
+      document.documentElement.classList.add('dark-mode')
+    }
   }, [])
 
   function toggle() {
     setIsDark((prev) => {
-      localStorage.setItem('sof-theme', prev ? 'light' : 'dark')
-      return !prev
+      const next = !prev
+      localStorage.setItem('sof-theme', next ? 'dark' : 'light')
+      document.documentElement.classList.toggle('dark-mode', next)
+      return next
     })
   }
 
