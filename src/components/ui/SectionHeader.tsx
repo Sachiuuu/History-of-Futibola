@@ -9,7 +9,7 @@ export default function SectionHeader({ title, subtitle }: SectionHeaderProps) {
       <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight drop-shadow-md">{title}</h2>
       <div className="section-divider" />
       {subtitle && (
-        <p className="text-white/75 text-sm mt-1 font-medium drop-shadow-sm">{subtitle}</p>
+        <p className="text-white text-sm mt-1 font-bold drop-shadow-md tracking-wide">{subtitle}</p>
       )}
     </div>
   )
