@@ -55,6 +55,14 @@
   }
 }
 
+@keyframes trophy-spin-3d {
+  0%   { transform: perspective(400px) rotateY(0deg);    filter: brightness(1.05) drop-shadow(0 10px 20px rgba(0,0,0,0.22)); }
+  20%  { transform: perspective(400px) rotateY(72deg);   filter: brightness(0.75) drop-shadow(0 6px 12px rgba(0,0,0,0.14)); }
+  50%  { transform: perspective(400px) rotateY(180deg);  filter: brightness(0.45) drop-shadow(0 2px 6px rgba(0,0,0,0.08)); }
+  80%  { transform: perspective(400px) rotateY(288deg);  filter: brightness(0.75) drop-shadow(0 6px 12px rgba(0,0,0,0.14)); }
+  100% { transform: perspective(400px) rotateY(360deg);  filter: brightness(1.05) drop-shadow(0 10px 20px rgba(0,0,0,0.22)); }
+}
+
 @keyframes count-up {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }

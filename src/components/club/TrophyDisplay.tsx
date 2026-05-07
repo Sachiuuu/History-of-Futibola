@@ -55,8 +55,8 @@ export default function TrophyDisplay({ trophies }: TrophyDisplayProps) {
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
         {trophies.breakdown.map((entry: import('@/types/club').TrophyEntry) => (
           <GlassCard key={entry.competition} className="p-5 text-center hover:scale-[1.02] transition-transform cursor-default group">
-            <div className="flex justify-center mb-3 transition-transform group-hover:scale-110" style={{ color: 'var(--club-accent)' }}>
-              <TrophyIcon size={36} color="var(--club-primary)" />
+            <div className="flex justify-center mb-2">
+              <TrophyIcon type={entry.icon} size={64} spinning />
             </div>
             <p className="text-4xl font-black mb-1" style={{ color: 'var(--club-primary)' }}>
               <AnimatedCount target={entry.count} visible={visible} />
