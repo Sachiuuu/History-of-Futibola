@@ -41,7 +41,7 @@
   html { scroll-behavior: smooth; }
 
   body {
-    background-color: var(--paper);
+    background-color: color-mix(in srgb, var(--accent) 5%, var(--paper));
     color: var(--ink);
     font-family: var(--body);
     font-size: 16px;
@@ -61,7 +61,7 @@
   /* Typography primitives */
   .kicker {
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--muted);
