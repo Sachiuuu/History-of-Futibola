@@ -9,14 +9,19 @@ function hexToRgb(hex: string): string {
   return `${r}, ${g}, ${b}`
 }
 
-export function buildClubTheme(theme: ClubTheme): CSSProperties {
+export function buildClubTheme(theme: ClubTheme, isDark = false): CSSProperties {
   const rgb = hexToRgb(theme.primaryColor)
   return {
     '--accent': theme.primaryColor,
+    '--accent-rgb': rgb,
     '--accent-soft': `rgba(${rgb}, 0.12)`,
     '--club-primary': theme.primaryColor,
     '--club-secondary': theme.secondaryColor,
     '--club-accent': theme.accentColor,
     '--club-dark': theme.darkColor,
+    ...(isDark ? {
+      '--paper': theme.darkColor,
+      '--paper-2': `color-mix(in srgb, ${theme.darkColor} 80%, ${theme.primaryColor})`,
+    } : {}),
   } as CSSProperties
 }
