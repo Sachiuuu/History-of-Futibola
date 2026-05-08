@@ -61,7 +61,14 @@
   "tacticalIdentity": {
     "formation": "4-3-3",
     "style": "High-press, vertical, relentless — the Klopp blueprint that defined an era.",
-    "attributes": ["Gegenpressing", "High defensive line", "Fast transitions", "Width & overloads"]
+    "evolution": "From Shankly's pass-and-move foundation to Paisley's European mastery, then Benítez's tactical pragmatism and finally Klopp's gegenpressing — Liverpool's identity has always been physical, vertical, and unmistakably aggressive.",
+    "attributes": [
+      { "name": "Gegenpressing", "intensity": 10, "tag": "Signature" },
+      { "name": "Fast transitions", "intensity": 9, "tag": "Aggressive" },
+      { "name": "High defensive line", "intensity": 8, "tag": "Strong" },
+      { "name": "Width & overloads", "intensity": 7, "tag": "Strong" },
+      { "name": "Build-up from the back", "intensity": 6, "tag": "Solid" }
+    ]
   },
   "theme": {
     "primaryColor": "#C8102E",

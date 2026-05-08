@@ -78,10 +78,17 @@ export interface Transfer {
   club: string
 }
 
+export interface TacticalAttribute {
+  name: string
+  intensity: number
+  tag?: string
+}
+
 export interface TacticalIdentity {
   formation: string
   style: string
-  attributes: string[]
+  attributes: TacticalAttribute[]
+  evolution?: string
 }
 
 export interface Club {
