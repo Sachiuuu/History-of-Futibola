@@ -9,9 +9,10 @@ import PageWrapper from '@/components/layout/PageWrapper'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import ClubHero from '@/components/club/ClubHero'
-import SectionNav from '@/components/club/SectionNav'
+import SectionNav, { type SectionItem } from '@/components/club/SectionNav'
 import ClubDescription from '@/components/club/ClubDescription'
 import ClubDivider from '@/components/club/ClubDivider'
+import BackToTop from '@/components/ui/BackToTop'
 import ClubRecords from '@/components/club/ClubRecords'
 import TrophyDisplay from '@/components/club/TrophyDisplay'
 import HistoricalTimeline from '@/components/club/HistoricalTimeline'
@@ -62,30 +63,44 @@ export default async function ClubPage({ params }: PageProps) {
       <Navbar clubName={club.name} leagueName={leagueName} leagueId={club.leagueId} />
 
       <ClubHero club={club} />
-      <SectionNav />
+
+      {(() => {
+        const sections: SectionItem[] = [
+          { id: 'overview', label: 'Overview' },
+          { id: 'trophies', label: 'Trophies' },
+          { id: 'records', label: 'Records' },
+          { id: 'history', label: 'History' },
+          ...(club.rivalries ? [{ id: 'rivalries', label: 'Rivalries' }] : []),
+          ...(club.tacticalIdentity ? [{ id: 'tactical', label: 'Tactical' }] : []),
+          ...(club.notableTransfers ? [{ id: 'transfers', label: 'Transfers' }] : []),
+          { id: 'seasons', label: 'Seasons' },
+          { id: 'legends', label: 'Legends' },
+        ]
+        return <SectionNav sections={sections} />
+      })()}
 
       <ClubDescription club={club} />
       {club.manager && <ManagerRow manager={club.manager} />}
-      <ClubDivider />
+      <ClubDivider variant="solid" />
 
       <main>
         {/* Trophies */}
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
           <TrophyDisplay trophies={club.trophies} />
         </div>
-        <ClubDivider />
+        <ClubDivider variant="stripes" />
 
         {/* Records */}
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '64px 32px 80px' }}>
           <ClubRecords records={club.records} />
         </div>
-        <ClubDivider />
+        <ClubDivider variant="solid" />
 
         {/* History */}
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
           <HistoricalTimeline events={club.historicalTimeline} />
         </div>
-        <ClubDivider />
+        <ClubDivider variant="stripes" />
 
         {/* Rivalries */}
         {club.rivalries && (
@@ -93,7 +108,7 @@ export default async function ClubPage({ params }: PageProps) {
             <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
               <RivalriesSection rivalries={club.rivalries} />
             </div>
-            <ClubDivider />
+            <ClubDivider variant="solid" />
           </>
         )}
 
@@ -103,7 +118,7 @@ export default async function ClubPage({ params }: PageProps) {
             <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
               <TacticalSection tactical={club.tacticalIdentity} />
             </div>
-            <ClubDivider />
+            <ClubDivider variant="dots" />
           </>
         )}
 
@@ -113,7 +128,7 @@ export default async function ClubPage({ params }: PageProps) {
             <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
               <TransfersTimeline transfers={club.notableTransfers} />
             </div>
-            <ClubDivider />
+            <ClubDivider variant="dots" />
           </>
         )}
 
@@ -121,13 +136,14 @@ export default async function ClubPage({ params }: PageProps) {
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
           <SeasonSection availableSeasons={club.availableSeasons} seasonsData={seasonsData} />
         </div>
-        <ClubDivider />
+        <ClubDivider variant="stripes" />
 
         {/* Legends */}
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
           <LegendsSection legends={club.legends} />
         </div>
       </main>
+      <BackToTop />
 
       <Footer />
     </PageWrapper>
