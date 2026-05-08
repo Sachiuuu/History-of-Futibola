@@ -43,6 +43,10 @@
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
 
+  /* Sticky-nav clearance: when a section is targeted via #anchor,
+     leave space for the navbar (--navbar-h) plus the SectionNav (~46px). */
+  section[id] { scroll-margin-top: calc(var(--navbar-h) + 64px); }
+
   body {
     background-color: color-mix(in srgb, var(--accent) 5%, var(--paper));
     color: var(--ink);

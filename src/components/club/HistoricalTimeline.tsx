@@ -32,14 +32,15 @@ export default function HistoricalTimeline({ events }: HistoricalTimelineProps) 
             key={event.year}
             className={visible ? 'animate-slide-in' : ''}
             style={{
-              display: 'grid',
-              gridTemplateColumns: '120px 1fr 6fr',
-              gap: 24,
+              display: 'flex',
+              flexDirection: 'column',
               alignItems: 'center',
-              padding: '22px 0',
+              gap: 14,
+              padding: '32px 24px',
               borderBottom: '1px solid var(--rule)',
-              maxWidth: 1280,
+              maxWidth: 720,
               margin: '0 auto',
+              textAlign: 'center',
               opacity: visible ? undefined : 0,
               animationDelay: `${i * 60}ms`,
               animationFillMode: 'forwards',
@@ -53,16 +54,16 @@ export default function HistoricalTimeline({ events }: HistoricalTimelineProps) 
                 fontSize: 'clamp(32px, 4vw, 52px)',
                 lineHeight: 1,
                 letterSpacing: '-0.02em',
-                color: 'var(--ink)',
+                color: 'var(--accent)',
               }}
             >
               {event.year}
             </div>
 
-            {/* Accent separator — dot with extending lines */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            {/* Centered dot separator */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, width: 120 }}>
               <div style={{ flex: 1, height: 1, background: 'var(--rule)' }} />
-              <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--accent)', flexShrink: 0 }} />
+              <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--accent)', flexShrink: 0 }} />
               <div style={{ flex: 1, height: 1, background: 'var(--rule)' }} />
             </div>
 
@@ -70,10 +71,9 @@ export default function HistoricalTimeline({ events }: HistoricalTimelineProps) 
             <p
               style={{
                 fontSize: 16,
-                lineHeight: 1.55,
+                lineHeight: 1.6,
                 color: 'var(--ink)',
                 margin: 0,
-                maxWidth: '64ch',
               }}
             >
               {event.event}

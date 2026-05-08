@@ -160,15 +160,17 @@ export default function TrophyDisplay({ trophies }: TrophyDisplayProps) {
               }}
             >
               <div
-                key={`shimmer-${i}-${hoveredIdx === i ? 'on' : 'off'}`}
                 style={{
                   position: 'absolute',
                   top: 0,
                   left: 0,
-                  width: '40%',
+                  width: '60%',
                   height: '100%',
-                  background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent)',
-                  animation: hoveredIdx === i ? 'shimmer-sweep 0.6s ease forwards' : 'none',
+                  background: 'linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.45), transparent)',
+                  transform: hoveredIdx === i
+                    ? 'translateX(200%) skewX(-15deg)'
+                    : 'translateX(-120%) skewX(-15deg)',
+                  transition: hoveredIdx === i ? 'transform 0.7s ease-out' : 'none',
                 }}
               />
             </div>

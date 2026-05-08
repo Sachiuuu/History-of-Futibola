@@ -81,26 +81,26 @@ export default async function ClubPage({ params }: PageProps) {
 
       <ClubDescription club={club} />
       {club.manager && <ManagerRow manager={club.manager} />}
-      <ClubDivider variant="solid" />
+      <ClubDivider />
 
       <main>
         {/* Trophies */}
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
           <TrophyDisplay trophies={club.trophies} />
         </div>
-        <ClubDivider variant="stripes" />
+        <ClubDivider />
 
         {/* Records */}
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '64px 32px 80px' }}>
           <ClubRecords records={club.records} />
         </div>
-        <ClubDivider variant="solid" />
+        <ClubDivider />
 
         {/* History */}
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
           <HistoricalTimeline events={club.historicalTimeline} />
         </div>
-        <ClubDivider variant="stripes" />
+        <ClubDivider />
 
         {/* Rivalries */}
         {club.rivalries && (
@@ -108,7 +108,7 @@ export default async function ClubPage({ params }: PageProps) {
             <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
               <RivalriesSection rivalries={club.rivalries} />
             </div>
-            <ClubDivider variant="solid" />
+            <ClubDivider />
           </>
         )}
 
@@ -118,7 +118,7 @@ export default async function ClubPage({ params }: PageProps) {
             <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
               <TacticalSection tactical={club.tacticalIdentity} />
             </div>
-            <ClubDivider variant="dots" />
+            <ClubDivider />
           </>
         )}
 
@@ -128,7 +128,7 @@ export default async function ClubPage({ params }: PageProps) {
             <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
               <TransfersTimeline transfers={club.notableTransfers} />
             </div>
-            <ClubDivider variant="dots" />
+            <ClubDivider />
           </>
         )}
 
@@ -136,7 +136,7 @@ export default async function ClubPage({ params }: PageProps) {
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
           <SeasonSection availableSeasons={club.availableSeasons} seasonsData={seasonsData} />
         </div>
-        <ClubDivider variant="stripes" />
+        <ClubDivider />
 
         {/* Legends */}
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
