@@ -11,11 +11,16 @@ import Footer from '@/components/layout/Footer'
 import ClubHero from '@/components/club/ClubHero'
 import SectionNav from '@/components/club/SectionNav'
 import ClubDescription from '@/components/club/ClubDescription'
+import ClubDivider from '@/components/club/ClubDivider'
 import ClubRecords from '@/components/club/ClubRecords'
 import TrophyDisplay from '@/components/club/TrophyDisplay'
 import HistoricalTimeline from '@/components/club/HistoricalTimeline'
 import SeasonSection from '@/components/club/SeasonSection'
 import LegendsSection from '@/components/club/LegendsSection'
+import ManagerRow from '@/components/club/ManagerRow'
+import RivalriesSection from '@/components/club/RivalriesSection'
+import TacticalSection from '@/components/club/TacticalSection'
+import TransfersTimeline from '@/components/club/TransfersTimeline'
 
 interface PageProps {
   params: Promise<{ clubId: string }>
@@ -56,39 +61,67 @@ export default async function ClubPage({ params }: PageProps) {
     <PageWrapper theme={club.theme}>
       <Navbar clubName={club.name} leagueName={leagueName} leagueId={club.leagueId} />
 
-      {/* Hero — full bleed, no container padding */}
       <ClubHero club={club} />
       <SectionNav />
 
-      {/* Editorial intro: description + records strip */}
       <ClubDescription club={club} />
-      <div className="rule-band" />
+      {club.manager && <ManagerRow manager={club.manager} />}
+      <ClubDivider />
 
-      {/* Main content sections */}
       <main>
         {/* Trophies */}
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
           <TrophyDisplay trophies={club.trophies} />
         </div>
-        <div className="rule-band" />
+        <ClubDivider />
 
-        {/* Records strip */}
+        {/* Records */}
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '64px 32px 80px' }}>
           <ClubRecords records={club.records} />
         </div>
-        <div className="rule-band" />
+        <ClubDivider />
 
         {/* History */}
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
           <HistoricalTimeline events={club.historicalTimeline} />
         </div>
-        <div className="rule-band" />
+        <ClubDivider />
+
+        {/* Rivalries */}
+        {club.rivalries && (
+          <>
+            <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+              <RivalriesSection rivalries={club.rivalries} />
+            </div>
+            <ClubDivider />
+          </>
+        )}
+
+        {/* Tactical Identity */}
+        {club.tacticalIdentity && (
+          <>
+            <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+              <TacticalSection tactical={club.tacticalIdentity} />
+            </div>
+            <ClubDivider />
+          </>
+        )}
+
+        {/* Notable Transfers */}
+        {club.notableTransfers && (
+          <>
+            <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+              <TransfersTimeline transfers={club.notableTransfers} />
+            </div>
+            <ClubDivider />
+          </>
+        )}
 
         {/* Seasons */}
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
           <SeasonSection availableSeasons={club.availableSeasons} seasonsData={seasonsData} />
         </div>
-        <div className="rule-band" />
+        <ClubDivider />
 
         {/* Legends */}
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
