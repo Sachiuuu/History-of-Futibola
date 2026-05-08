@@ -44,7 +44,8 @@ export default function SeasonSection({ availableSeasons, seasonsData }: SeasonS
       <SectionHeader kicker="Form Guide" title="Season by Season" />
 
       <div style={{ display: 'grid', gridTemplateColumns: '7fr 5fr', gap: 32 }}>
-        {/* Left: seasons table */}
+        {/* Left: seasons table + kits */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
         <div style={{ border: '1px solid var(--rule)', background: 'var(--paper-2)', overflowX: 'auto' }}>
           <table className="season-table">
             <thead>
@@ -80,6 +81,17 @@ export default function SeasonSection({ availableSeasons, seasonsData }: SeasonS
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Kits below the season table */}
+        {panel && (
+          <div style={{ border: '1px solid var(--rule)', borderTop: 'none', background: 'var(--paper-2)', padding: '24px 20px' }}>
+            <div className="kicker" style={{ color: 'var(--accent)', marginBottom: 16 }}>
+              {panel.displayLabel} · Kits
+            </div>
+            <KitDisplay home={panel.kits.home} away={panel.kits.away} third={panel.kits.third} />
+          </div>
+        )}
         </div>
 
         {/* Right: current season panel */}
@@ -158,13 +170,6 @@ export default function SeasonSection({ availableSeasons, seasonsData }: SeasonS
               {panel.seasonHighlight}
             </p>
 
-            {/* Kits */}
-            <div style={{ marginTop: 32, paddingTop: 24, borderTop: '2px solid var(--accent)' }} id="kits">
-              <div className="kicker" style={{ color: 'var(--accent)', marginBottom: 16 }}>
-                {panel.displayLabel} · Kits
-              </div>
-              <KitDisplay home={panel.kits.home} away={panel.kits.away} third={panel.kits.third} />
-            </div>
           </aside>
         )}
       </div>

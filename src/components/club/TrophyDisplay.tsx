@@ -150,7 +150,7 @@ export default function TrophyDisplay({ trophies }: TrophyDisplayProps) {
               <span style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--muted)', letterSpacing: '0.12em' }}>
                 № {String(i + 1).padStart(2, '0')}
               </span>
-              <span style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 28, color: 'var(--accent)', lineHeight: 1 }}>
+              <span style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 48, color: 'var(--accent)', lineHeight: 1 }}>
                 <AnimatedCount target={entry.count} visible={visible} />
               </span>
             </div>

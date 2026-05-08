@@ -18,9 +18,11 @@ export default function HistoricalTimeline({ events }: HistoricalTimelineProps) 
               display: 'grid',
               gridTemplateColumns: '120px 1fr 6fr',
               gap: 24,
-              alignItems: 'baseline',
+              alignItems: 'center',
               padding: '22px 0',
               borderBottom: '1px solid var(--rule)',
+              maxWidth: 900,
+              margin: '0 auto',
             }}
           >
             {/* Year */}

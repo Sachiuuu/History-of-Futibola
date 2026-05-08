@@ -70,11 +70,11 @@ export default async function ClubPage({ params }: PageProps) {
         </div>
         <div className="rule-band" />
 
-        {/* Records strip — lives inside editorial section padding */}
-        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
+        {/* Records strip */}
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '64px 32px 80px' }}>
           <ClubRecords records={club.records} />
         </div>
-        <div className="rule-band" style={{ marginTop: 0 }} />
+        <div className="rule-band" />
 
         {/* History */}
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
