@@ -1,6 +1,7 @@
-import Image from 'next/image'
+'use client'
+
+import { useState } from 'react'
 import type { Kit } from '@/types/season'
-import GlassCard from '@/components/ui/GlassCard'
 
 interface KitDisplayProps {
   home: Kit
@@ -14,39 +15,70 @@ const kits = [
   { key: 'third', label: 'Third' },
 ] as const
 
+function swapExt(src: string): string {
+  if (src.endsWith('.png')) return src.replace(/\.png$/, '.jpg')
+  if (src.endsWith('.jpg') || src.endsWith('.jpeg')) return src.replace(/\.(jpg|jpeg)$/, '.png')
+  return src
+}
+
+function KitImage({ src, alt, color }: { src: string; alt: string; color: string }) {
+  const [imgSrc, setImgSrc] = useState(src)
+  const [failed, setFailed] = useState(false)
+
+  function handleError() {
+    const alternate = swapExt(imgSrc)
+    if (!failed && alternate !== imgSrc) {
+      setImgSrc(alternate)
+      setFailed(true)
+    }
+  }
+
+  return (
+    <div
+      className="w-full overflow-hidden"
+      style={{ aspectRatio: '3 / 4', background: color + '22', borderRadius: 8 }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={imgSrc}
+        alt={alt}
+        onError={handleError}
+        style={{ width: '100%', height: '100%', objectFit: 'contain', padding: 8 }}
+      />
+    </div>
+  )
+}
+
 export default function KitDisplay({ home, away, third }: KitDisplayProps) {
   const kitMap = { home, away, third }
 
   return (
-    <div className="grid grid-cols-3 gap-3">
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
       {kits.map(({ key, label }) => {
         const kit = kitMap[key]
         return (
-          <GlassCard
+          <div
             key={key}
-            className="p-4 flex flex-col items-center gap-3 hover:scale-[1.03] hover:shadow-lg transition-all duration-200 cursor-default"
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 10,
+              padding: 12,
+              border: '1px solid var(--rule)',
+              background: 'var(--paper-2)',
+            }}
           >
-            <div
-              className="relative w-full aspect-[3/4] rounded-lg overflow-hidden"
-              style={{ backgroundColor: kit.primaryColor + '22' }}
-            >
-              <Image
-                src={kit.image}
-                alt={`${label} kit`}
-                fill
-                className="object-contain p-2"
-                sizes="(max-width: 768px) 30vw, 200px"
-              />
+            <KitImage src={kit.image} alt={`${label} kit`} color={kit.primaryColor} />
+            <div style={{ textAlign: 'center' }}>
+              <p style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 16, color: 'var(--ink)', letterSpacing: '-0.01em', margin: 0 }}>
+                {label}
+              </p>
+              <p style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--muted)', marginTop: 3 }}>
+                {kit.description}
+              </p>
             </div>
-            <div className="text-center">
-              <div
-                className="w-4 h-4 rounded-full mx-auto mb-1 border border-gray-300"
-                style={{ backgroundColor: kit.primaryColor }}
-              />
-              <p className="text-xs font-semibold text-gray-700 uppercase tracking-widest">{label}</p>
-              <p className="text-[11px] text-gray-500 mt-0.5">{kit.description}</p>
-            </div>
-          </GlassCard>
+          </div>
         )
       })}
     </div>
