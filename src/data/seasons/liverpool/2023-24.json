@@ -12,17 +12,17 @@
   "leagueId": "premier-league",
   "kits": {
     "home": {
-      "image": "/images/kits/liverpool/2023-24/home.png",
+      "image": "/images/kits/liverpool/2023-24/home.jpg",
       "primaryColor": "#C8102E",
       "description": "Classic all-red with Adidas three stripes"
     },
     "away": {
-      "image": "/images/kits/liverpool/2023-24/away.png",
+      "image": "/images/kits/liverpool/2023-24/away.jpg",
       "primaryColor": "#E1E0DF",
       "description": "Silver grey with red accents"
     },
     "third": {
-      "image": "/images/kits/liverpool/2023-24/third.png",
+      "image": "/images/kits/liverpool/2023-24/third.jpg",
       "primaryColor": "#2E2E2E",
       "description": "Dark charcoal with teal trim"
     }
