@@ -6,30 +6,48 @@ interface ClubCardProps {
   club: Club
 }
 
+function leagueLabel(id: string): string {
+  return id.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
+}
+
 export default function ClubCard({ club }: ClubCardProps) {
   return (
-    <Link href={`/clubs/${club.id}`} className="group block">
-      <div
-        className="relative rounded-2xl overflow-hidden border p-5 flex flex-col items-center gap-3 text-center transition-all duration-200 hover:scale-[1.03] hover:shadow-xl bg-white/70"
-        style={{ borderColor: club.theme.glassStroke }}
-      >
-        {/* Color accent strip */}
-        <div className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl" style={{ backgroundColor: club.theme.primaryColor }} />
-
-        <div className="relative w-16 h-16 mt-2">
-          <Image
-            src={club.badge}
-            alt={`${club.name} badge`}
-            fill
-            className="object-contain drop-shadow-sm"
-            sizes="64px"
-          />
+    <Link
+      href={`/clubs/${club.id}`}
+      className="cell-hoverable"
+      style={{
+        display: 'block',
+        padding: '28px 24px',
+        borderRight: '1px solid var(--rule)',
+        borderBottom: '1px solid var(--rule)',
+      }}
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <div className="relative" style={{ width: 44, height: 44, flexShrink: 0 }}>
+            <Image src={club.badge} alt={`${club.name} badge`} fill className="object-contain" sizes="44px" />
+          </div>
+          <div>
+            <div
+              style={{
+                fontFamily: 'var(--display)',
+                fontWeight: 800,
+                fontSize: 24,
+                letterSpacing: '-0.01em',
+                color: 'var(--ink)',
+                lineHeight: 1.05,
+              }}
+            >
+              {club.shortName}
+            </div>
+            <div className="label-mono" style={{ marginTop: 6 }}>
+              {leagueLabel(club.leagueId)}
+            </div>
+          </div>
         </div>
-        <div>
-          <p className="font-bold text-gray-900 text-sm leading-tight group-hover:opacity-80 transition-opacity">{club.name}</p>
-          <p className="text-xs text-gray-500 mt-0.5">{club.nickname}</p>
+        <div className="label-mono" style={{ textAlign: 'right' }}>
+          Est. {club.foundedYear}
         </div>
-        <div className="text-xs text-gray-400">{club.city}</div>
       </div>
     </Link>
   )
