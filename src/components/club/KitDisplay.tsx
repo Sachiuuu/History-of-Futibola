@@ -43,6 +43,7 @@ function KitImage({ src, alt, color }: { src: string; alt: string; color: string
         src={imgSrc}
         alt={alt}
         onError={handleError}
+        loading="lazy"
         style={{ width: '100%', height: '100%', objectFit: 'contain', padding: 8 }}
       />
     </div>
