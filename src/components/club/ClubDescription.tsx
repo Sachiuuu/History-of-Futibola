@@ -7,7 +7,7 @@ interface ClubDescriptionProps {
 
 export default function ClubDescription({ club, season }: ClubDescriptionProps) {
   return (
-    <section id="overview" style={{ maxWidth: '1280px', margin: '0 auto', padding: '96px 32px' }}>
+    <section id="overview" style={{ position: 'relative', overflow: 'hidden', maxWidth: '1280px', margin: '0 auto', padding: '96px 32px' }}>
       <div style={{ display: 'grid', gridTemplateColumns: '4fr 8fr', gap: 32 }}>
         {/* Left: kicker + title + byline */}
         <div>
@@ -23,6 +23,30 @@ export default function ClubDescription({ club, season }: ClubDescriptionProps) 
         {/* Right: lede + quote */}
         <div>
           <p className="lede">{club.description}</p>
+
+          <div
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              bottom: -20,
+              right: -20,
+              left: -20,
+              fontFamily: 'var(--display)',
+              fontSize: 'clamp(48px, 10vw, 130px)',
+              fontWeight: 800,
+              fontStyle: 'italic',
+              color: 'var(--ink)',
+              opacity: 0.04,
+              lineHeight: 1.1,
+              pointerEvents: 'none',
+              userSelect: 'none',
+              wordBreak: 'break-word',
+              transform: 'rotate(-2deg)',
+              padding: '0 32px',
+            }}
+          >
+            {club.differentiator}
+          </div>
 
           <blockquote
             style={{
