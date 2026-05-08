@@ -69,6 +69,7 @@ function AnimatedCount({ target, visible }: { target: number; visible: boolean }
 export default function TrophyDisplay({ trophies }: TrophyDisplayProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null)
 
   useEffect(() => {
     const el = ref.current
@@ -130,6 +131,7 @@ export default function TrophyDisplay({ trophies }: TrophyDisplayProps) {
           <article
             key={entry.competition}
             style={{
+              position: 'relative',
               padding: 28,
               borderRight: '1px solid var(--rule)',
               borderBottom: '1px solid var(--rule)',
@@ -140,12 +142,35 @@ export default function TrophyDisplay({ trophies }: TrophyDisplayProps) {
               transition: 'background 0.18s ease',
             }}
             onMouseEnter={(e) => {
+              setHoveredIdx(i)
               ;(e.currentTarget as HTMLElement).style.background = 'var(--accent-soft)'
             }}
             onMouseLeave={(e) => {
+              setHoveredIdx(null)
               ;(e.currentTarget as HTMLElement).style.background = 'transparent'
             }}
           >
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                overflow: 'hidden',
+                pointerEvents: 'none',
+                borderRadius: 'inherit',
+              }}
+            >
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '40%',
+                  height: '100%',
+                  background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent)',
+                  animation: hoveredIdx === i ? 'shimmer-sweep 0.6s ease forwards' : 'none',
+                }}
+              />
+            </div>
             <div className="flex justify-between items-center">
               <span style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--muted)', letterSpacing: '0.12em' }}>
                 № {String(i + 1).padStart(2, '0')}
