@@ -1,3 +1,5 @@
+'use client'
+import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import type { Club } from '@/types/club'
 
@@ -12,6 +14,18 @@ function ordinal(n: number): string {
 }
 
 export default function ClubHero({ club }: ClubHeroProps) {
+  const bgRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    function onScroll() {
+      if (bgRef.current) {
+        bgRef.current.style.transform = `translateY(${window.scrollY * 0.35}px)`
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   const leagueLabel = club.leagueId
     .replace(/-/g, ' ')
     .replace(/\b\w/g, (c: string) => c.toUpperCase())
@@ -27,7 +41,7 @@ export default function ClubHero({ club }: ClubHeroProps) {
       style={{ minHeight: '86vh', background: '#0c0a09' }}
     >
       {/* Stadium background */}
-      <div className="absolute inset-0">
+      <div ref={bgRef} className="absolute inset-0">
         <Image
           src={club.stadium.image}
           alt={club.stadium.name}
@@ -80,7 +94,7 @@ export default function ClubHero({ club }: ClubHeroProps) {
               className="block italic"
               style={{
                 fontWeight: 400,
-                color: 'var(--accent)',
+                color: 'var(--club-secondary, var(--accent))',
               }}
             >
               {titleLine2}
@@ -88,13 +102,19 @@ export default function ClubHero({ club }: ClubHeroProps) {
           )}
         </h1>
 
+        {club.motto && (
+          <p style={{ fontFamily: 'var(--display)', fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(14px, 2vw, 20px)', color: 'rgba(255,255,255,0.65)', marginTop: 8, letterSpacing: '0.04em' }}>
+            &ldquo;{club.motto}&rdquo;
+          </p>
+        )}
+
         {/* Bottom strip — divider + crest + meta items */}
         <div
           className="flex items-end gap-8"
           style={{ borderTop: '1px solid rgba(255,255,255,0.18)', paddingTop: 28 }}
         >
           {/* Club badge */}
-          <div className="relative flex-shrink-0 w-[72px] h-[72px]">
+          <div className="badge-glow relative flex-shrink-0 w-[72px] h-[72px]">
             <Image
               src={club.badge}
               alt={`${club.name} badge`}
