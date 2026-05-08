@@ -67,6 +67,7 @@ export default function SeasonSection({ availableSeasons, seasonsData }: SeasonS
                   className={selected === s.season ? 'current' : ''}
                   tabIndex={0}
                   role="row"
+                  aria-pressed={selected === s.season}
                   onClick={() => setSelected(s.season)}
                   onKeyDown={(e) => e.key === 'Enter' && setSelected(s.season)}
                 >

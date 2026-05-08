@@ -173,7 +173,6 @@
     padding: 0 8px;
   }
   .season-table tr.current .pos-pill { background: var(--accent); color: #fff; }
-  .season-table tr.current { background: var(--accent-soft); }
   .season-table .notable { color: var(--muted); font-size: 13px; }
 
   .label-mono {
@@ -231,6 +230,27 @@
       grid-template-columns: repeat(var(--rec-cols, 5), 1fr);
     }
   }
+
+  .legend-card {
+    transition: border-color 0.2s, background 0.2s;
+    border-top: 2px solid var(--rule);
+  }
+  .legend-card:hover {
+    border-top-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 3%, var(--paper));
+  }
+
+  .season-table tr.current td:first-child {
+    box-shadow: inset 4px 0 0 var(--accent);
+  }
+}
+
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+button:focus-visible, a:focus-visible {
+  outline-offset: 3px;
 }
 
 /* =========================================================

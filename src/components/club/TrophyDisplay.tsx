@@ -130,6 +130,7 @@ export default function TrophyDisplay({ trophies }: TrophyDisplayProps) {
         {trophies.breakdown.map((entry: TrophyEntry, i: number) => (
           <article
             key={entry.competition}
+            className="cell-hoverable"
             style={{
               position: 'relative',
               padding: 28,
@@ -138,17 +139,9 @@ export default function TrophyDisplay({ trophies }: TrophyDisplayProps) {
               display: 'flex',
               flexDirection: 'column',
               gap: 14,
-              background: 'transparent',
-              transition: 'background 0.18s ease',
             }}
-            onMouseEnter={(e) => {
-              setHoveredIdx(i)
-              ;(e.currentTarget as HTMLElement).style.background = 'var(--accent-soft)'
-            }}
-            onMouseLeave={(e) => {
-              setHoveredIdx(null)
-              ;(e.currentTarget as HTMLElement).style.background = 'transparent'
-            }}
+            onMouseEnter={() => setHoveredIdx(i)}
+            onMouseLeave={() => setHoveredIdx(null)}
           >
             <div
               style={{

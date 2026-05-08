@@ -64,14 +64,11 @@ export default function ClubRecords({ records }: ClubRecordsProps) {
           return (
             <div
               key={key}
+              className="cell-hoverable"
               style={{
                 padding: '28px 20px',
                 borderRight: i < entries.length - 1 ? '1px solid var(--rule)' : 'none',
-                transition: 'background 0.18s',
-                cursor: 'default',
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = 'var(--accent-soft)' }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = 'transparent' }}
             >
               <div style={{ fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 10 }}>
                 {RECORD_LABELS[key] ?? key}

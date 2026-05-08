@@ -1,5 +1,4 @@
 'use client'
-import { useState } from 'react'
 import Image from 'next/image'
 import type { Legend } from '@/types/club'
 import { useIntersectionVisible, useAnimatedCount } from '@/components/ui/AnimatedNumber'
@@ -17,22 +16,16 @@ function AnimatedStat({ value, visible }: { value: number; visible: boolean }) {
 export default function LegendCard({ legend }: LegendCardProps) {
   const { ref, visible } = useIntersectionVisible(0.1)
   const hasStats = legend.careerAppearances > 0
-  const [hovered, setHovered] = useState(false)
 
   return (
     <article
       ref={ref as React.RefObject<HTMLElement>}
+      className="legend-card"
       style={{
         display: 'flex',
         flexDirection: 'column',
-        borderTop: `2px solid ${hovered ? 'var(--accent)' : 'var(--rule)'}`,
         paddingTop: 18,
-        background: hovered ? 'color-mix(in srgb, var(--accent) 3%, var(--paper))' : 'transparent',
-        transition: 'border-color 0.2s, background 0.2s',
-        cursor: 'default',
       }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
     >
       {/* Portrait */}
       <div className="relative w-full mb-4 overflow-hidden" style={{ aspectRatio: '3 / 4', background: 'var(--paper-2)' }}>

@@ -32,6 +32,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable} ${jetbrains.variable}`}>
       <body>
+        <a
+          href="#overview"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-[100]"
+          style={{ background: 'var(--accent)', color: '#fff', padding: '8px 14px', fontFamily: 'var(--mono)', fontSize: 12 }}
+        >
+          Skip to content
+        </a>
         <ThemeProvider>
           {children}
         </ThemeProvider>
