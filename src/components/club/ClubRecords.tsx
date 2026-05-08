@@ -66,12 +66,16 @@ export default function ClubRecords({ records }: ClubRecordsProps) {
               style={{
                 padding: '28px 20px',
                 borderRight: i < entries.length - 1 ? '1px solid var(--rule)' : 'none',
+                transition: 'background 0.18s',
+                cursor: 'default',
               }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = 'var(--accent-soft)' }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = 'transparent' }}
             >
               <div style={{ fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 10 }}>
                 {RECORD_LABELS[key] ?? key}
               </div>
-              <div style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 44, lineHeight: 1, color: 'var(--accent)', letterSpacing: '-0.02em' }}>
+              <div style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 'clamp(28px, 3.5vw, 44px)', lineHeight: 1, color: 'var(--accent)', letterSpacing: '-0.02em' }}>
                 {isNumeric ? <RecordValue value={asNum} visible={visible} /> : raw}
               </div>
               <div style={{ fontSize: 13, marginTop: 8, color: 'var(--muted)' }}>

@@ -38,7 +38,7 @@ export default function HistoricalTimeline({ events }: HistoricalTimelineProps) 
               alignItems: 'center',
               padding: '22px 0',
               borderBottom: '1px solid var(--rule)',
-              maxWidth: 900,
+              maxWidth: 1280,
               margin: '0 auto',
               opacity: visible ? undefined : 0,
               animationDelay: `${i * 60}ms`,
@@ -59,15 +59,12 @@ export default function HistoricalTimeline({ events }: HistoricalTimelineProps) 
               {event.year}
             </div>
 
-            {/* Accent rule */}
-            <div
-              style={{
-                height: 1,
-                background: 'var(--accent)',
-                alignSelf: 'center',
-                marginTop: 4,
-              }}
-            />
+            {/* Accent separator — dot with extending lines */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <div style={{ flex: 1, height: 1, background: 'var(--rule)' }} />
+              <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--accent)', flexShrink: 0 }} />
+              <div style={{ flex: 1, height: 1, background: 'var(--rule)' }} />
+            </div>
 
             {/* Event text */}
             <p

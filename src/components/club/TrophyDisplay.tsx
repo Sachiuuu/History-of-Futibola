@@ -122,7 +122,7 @@ export default function TrophyDisplay({ trophies }: TrophyDisplayProps) {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
           borderTop: '1px solid var(--rule)',
           borderLeft: '1px solid var(--rule)',
         }}
@@ -180,7 +180,7 @@ export default function TrophyDisplay({ trophies }: TrophyDisplayProps) {
               </span>
             </div>
 
-            <div style={{ width: 52, color: 'var(--ink)' }}>
+            <div style={{ width: 64, color: 'var(--ink)', opacity: 0.7 }}>
               <TrophyGlyph kind={entry.competition} />
             </div>
 
@@ -189,7 +189,9 @@ export default function TrophyDisplay({ trophies }: TrophyDisplayProps) {
             </h3>
 
             <div style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--muted)', lineHeight: 1.7, wordSpacing: 4 }}>
-              {entry.years.join(' · ')}
+              {entry.years.length > 5
+                ? `${entry.years.slice(-5).join(' · ')} +${entry.years.length - 5} more`
+                : entry.years.join(' · ')}
             </div>
           </article>
         ))}
