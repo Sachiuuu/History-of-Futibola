@@ -2,6 +2,8 @@ import Image from 'next/image'
 import type { Rivalry } from '@/types/club'
 import SectionHeader from '@/components/ui/SectionHeader'
 
+const BLUR = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMScgaGVpZ2h0PScxJyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnPjxyZWN0IGZpbGw9JyMyMDIwMjAnIHdpZHRoPScxJyBoZWlnaHQ9JzEnLz48L3N2Zz4='
+
 export default function RivalriesSection({ rivalries }: { rivalries: Rivalry[] }) {
   return (
     <section id="rivalries">
@@ -23,7 +25,7 @@ export default function RivalriesSection({ rivalries }: { rivalries: Rivalry[] }
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
                 {r.badge && (
                   <div style={{ position: 'relative', width: 40, height: 40, flexShrink: 0 }}>
-                    <Image src={r.badge} alt={r.name} fill style={{ objectFit: 'contain' }} sizes="40px" />
+                    <Image src={r.badge} alt={r.name} fill style={{ objectFit: 'contain' }} sizes="40px" placeholder="blur" blurDataURL={BLUR} loading="lazy" />
                   </div>
                 )}
                 <div style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 26, letterSpacing: '-0.01em', color: 'var(--ink)' }}>

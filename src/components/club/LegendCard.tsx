@@ -8,6 +8,8 @@ interface LegendCardProps {
   legend: Legend
 }
 
+const BLUR = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMScgaGVpZ2h0PScxJyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnPjxyZWN0IGZpbGw9JyMyMDIwMjAnIHdpZHRoPScxJyBoZWlnaHQ9JzEnLz48L3N2Zz4='
+
 function AnimatedStat({ value, visible }: { value: number; visible: boolean }) {
   const count = useAnimatedCount(value, visible)
   return <>{count}</>
@@ -35,6 +37,9 @@ export default function LegendCard({ legend }: LegendCardProps) {
           fill
           className="object-cover object-top"
           sizes="(max-width: 768px) 100vw, 33vw"
+          placeholder="blur"
+          blurDataURL={BLUR}
+          loading="lazy"
         />
       </div>
 

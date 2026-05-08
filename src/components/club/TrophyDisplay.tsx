@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { TrophyRecord, TrophyEntry } from '@/types/club'
 import SectionHeader from '@/components/ui/SectionHeader'
 import { useCountUp } from '@/components/ui/AnimatedNumber'
+import TrophyModal from './TrophyModal'
 
 interface TrophyDisplayProps {
   trophies: TrophyRecord
@@ -54,6 +55,7 @@ export default function TrophyDisplay({ trophies }: TrophyDisplayProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null)
+  const [openEntry, setOpenEntry] = useState<TrophyEntry | null>(null)
 
   useEffect(() => {
     const el = ref.current
@@ -123,7 +125,9 @@ export default function TrophyDisplay({ trophies }: TrophyDisplayProps) {
               display: 'flex',
               flexDirection: 'column',
               gap: 14,
+              cursor: 'pointer',
             }}
+            onClick={() => setOpenEntry(entry)}
             onMouseEnter={() => setHoveredIdx(i)}
             onMouseLeave={() => setHoveredIdx(null)}
           >
@@ -170,12 +174,13 @@ export default function TrophyDisplay({ trophies }: TrophyDisplayProps) {
 
             <div style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--muted)', lineHeight: 1.7, wordSpacing: 4 }}>
               {entry.years.length > 5
-                ? `${entry.years.slice(-5).join(' · ')} +${entry.years.length - 5} more`
+                ? `${entry.years.slice(-5).join(' · ')} …`
                 : entry.years.join(' · ')}
             </div>
           </article>
         ))}
       </div>
+      <TrophyModal entry={openEntry} onClose={() => setOpenEntry(null)} />
     </section>
   )
 }

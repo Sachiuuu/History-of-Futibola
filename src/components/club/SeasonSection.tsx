@@ -4,6 +4,7 @@ import { useState } from 'react'
 import type { SeasonData } from '@/types/season'
 import SectionHeader from '@/components/ui/SectionHeader'
 import KitDisplay from './KitDisplay'
+import SeasonSparkline from './SeasonSparkline'
 
 interface SeasonSectionProps {
   availableSeasons: string[]
@@ -47,6 +48,7 @@ export default function SeasonSection({ availableSeasons, seasonsData }: SeasonS
         {/* Left: seasons table + kits */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
         <div style={{ border: '1px solid var(--rule)', background: 'var(--paper-2)', overflowX: 'auto' }}>
+          <SeasonSparkline seasons={[...seasonList].reverse()} />
           <table className="season-table">
             <thead>
               <tr>
