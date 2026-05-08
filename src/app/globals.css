@@ -14,7 +14,7 @@
     --paper: #f7f3ed;
     --paper-2: #efeae1;
     --rule: rgba(0, 0, 0, 0.12);
-    --muted: rgba(0, 0, 0, 0.55);
+    --muted: rgba(0, 0, 0, 0.62);
 
     /* Typography */
     --display: 'Playfair Display', Georgia, serif;
@@ -206,5 +206,12 @@
   to   { opacity: 1; transform: translateX(0); }
 }
 
-.badge-glow { animation: badge-pulse 2.8s ease-in-out infinite; }
 .animate-slide-in { animation: slide-in-left 0.5s ease forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

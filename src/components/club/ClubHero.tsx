@@ -55,7 +55,7 @@ export default function ClubHero({ club }: ClubHeroProps) {
           className="absolute inset-0"
           style={{
             background:
-              'linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.08) 55%, rgba(0,0,0,0.48) 100%)',
+              'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.08) 55%, rgba(0,0,0,0.42) 100%)',
           }}
         />
       </div>
@@ -113,21 +113,27 @@ export default function ClubHero({ club }: ClubHeroProps) {
           className="flex items-end gap-8"
           style={{ borderTop: '1px solid rgba(255,255,255,0.18)', paddingTop: 28 }}
         >
-          {/* Club badge */}
-          <div className="badge-glow relative flex-shrink-0 w-[72px] h-[72px]">
+          {/* Club badge — T-04: 112px, T-03: 3 pulses only */}
+          <div
+            className="relative flex-shrink-0"
+            style={{
+              width: 112,
+              height: 112,
+              animation: 'badge-pulse 2.8s ease-in-out 3',
+            }}
+          >
             <Image
               src={club.badge}
               alt={`${club.name} badge`}
               fill
               className="object-contain"
-              sizes="72px"
+              sizes="112px"
             />
           </div>
 
-          {/* Meta strip */}
+          {/* Meta strip — T-01: flex-wrap replaces fixed 5-col grid */}
           <div
-            className="grid gap-8 flex-1"
-            style={{ gridTemplateColumns: 'repeat(5, 1fr)' }}
+            className="flex flex-wrap gap-x-8 gap-y-4 flex-1"
           >
             {[
               { label: 'Nickname', value: club.nickname },
@@ -136,7 +142,7 @@ export default function ClubHero({ club }: ClubHeroProps) {
               { label: 'Capacity', value: club.stadium.capacity.toLocaleString() },
               { label: 'City', value: club.city },
             ].map(({ label, value }) => (
-              <div key={label}>
+              <div key={label} style={{ minWidth: 120 }}>
                 <div
                   style={{
                     fontFamily: 'var(--mono)',
