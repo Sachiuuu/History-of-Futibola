@@ -91,10 +91,9 @@ export default async function ClubPage({ params }: PageProps) {
         <ClubDivider />
 
         {/* Records */}
-        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '64px 32px 80px' }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '64px 32px 96px' }}>
           <ClubRecords records={club.records} />
         </div>
-        <ClubDivider />
 
         {/* History */}
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
@@ -104,33 +103,25 @@ export default async function ClubPage({ params }: PageProps) {
 
         {/* Rivalries */}
         {club.rivalries && (
-          <>
-            <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
-              <RivalriesSection rivalries={club.rivalries} />
-            </div>
-            <ClubDivider />
-          </>
+          <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+            <RivalriesSection rivalries={club.rivalries} />
+          </div>
         )}
 
         {/* Tactical Identity */}
         {club.tacticalIdentity && (
-          <>
-            <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
-              <TacticalSection tactical={club.tacticalIdentity} />
-            </div>
-            <ClubDivider />
-          </>
+          <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+            <TacticalSection tactical={club.tacticalIdentity} />
+          </div>
         )}
 
         {/* Notable Transfers */}
         {club.notableTransfers && (
-          <>
-            <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
-              <TransfersTimeline transfers={club.notableTransfers} />
-            </div>
-            <ClubDivider />
-          </>
+          <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
+            <TransfersTimeline transfers={club.notableTransfers} />
+          </div>
         )}
+        {/* TODO: requires date field in TimelineEvent — "this day in history" card skipped */}
 
         {/* Seasons */}
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '96px 32px' }}>
