@@ -55,6 +55,35 @@ export interface ClubRecord {
   year?: number
 }
 
+export interface Manager {
+  name: string
+  nationality: string
+  since: number
+}
+
+export interface Rivalry {
+  name: string
+  badge?: string
+  wins: number
+  draws: number
+  losses: number
+  iconicMatch: string
+}
+
+export interface Transfer {
+  player: string
+  type: 'in' | 'out'
+  fee: string
+  year: number
+  club: string
+}
+
+export interface TacticalIdentity {
+  formation: string
+  style: string
+  attributes: string[]
+}
+
 export interface Club {
   id: string
   name: string
@@ -68,6 +97,11 @@ export interface Club {
   stadium: Stadium
   description: string
   differentiator: string
+  motto?: string
+  manager?: Manager
+  rivalries?: Rivalry[]
+  notableTransfers?: Transfer[]
+  tacticalIdentity?: TacticalIdentity
   theme: ClubTheme
   trophies: TrophyRecord
   historicalTimeline: TimelineEvent[]
