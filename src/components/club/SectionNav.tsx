@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export interface SectionItem {
   id: string
@@ -12,6 +12,8 @@ interface SectionNavProps {
 
 export default function SectionNav({ sections }: SectionNavProps) {
   const [active, setActive] = useState(sections[0]?.id ?? '')
+  const [scrolledRight, setScrolledRight] = useState(false)
+  const scrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const observers: IntersectionObserver[] = []
@@ -42,6 +44,8 @@ export default function SectionNav({ sections }: SectionNavProps) {
     >
       <div style={{ position: 'relative' }}>
         <div
+          ref={scrollRef}
+          onScroll={(e) => setScrolledRight((e.target as HTMLDivElement).scrollLeft > 8)}
           className="max-w-[1280px] mx-auto flex gap-0 overflow-x-auto"
           style={{ padding: '0 32px', scrollbarWidth: 'none' }}
         >
@@ -66,7 +70,22 @@ export default function SectionNav({ sections }: SectionNavProps) {
             </a>
           ))}
         </div>
-        {/* T-06: right-edge fade indicating overflow */}
+        {/* Left-edge fade — visible only when scrolled */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            bottom: 0,
+            width: 48,
+            background: 'linear-gradient(to left, transparent, var(--paper))',
+            pointerEvents: 'none',
+            opacity: scrolledRight ? 1 : 0,
+            transition: 'opacity 0.2s',
+          }}
+        />
+        {/* Right-edge fade indicating overflow */}
         <div
           aria-hidden="true"
           style={{

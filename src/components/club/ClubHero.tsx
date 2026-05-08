@@ -22,6 +22,7 @@ export default function ClubHero({ club }: ClubHeroProps) {
     .replace(/\b\w/g, (c: string) => c.toUpperCase())
 
   const nameParts = club.name.split(' ')
+  const isSingleWord = nameParts.length === 1
   const titleLine1 = nameParts.slice(0, -1).join(' ') || club.name
   const titleLine2 = nameParts.length > 1 ? nameParts[nameParts.length - 1] : ''
 
@@ -81,7 +82,7 @@ export default function ClubHero({ club }: ClubHeroProps) {
         {/* Big display title */}
         <h1 className="hero-title">
           <span className="block" style={{ color: '#fff' }}>{titleLine1}</span>
-          {titleLine2 && (
+          {!isSingleWord && titleLine2 && (
             <span
               className="block italic"
               style={{
@@ -90,6 +91,22 @@ export default function ClubHero({ club }: ClubHeroProps) {
               }}
             >
               {titleLine2}
+            </span>
+          )}
+          {isSingleWord && (
+            <span
+              className="block italic"
+              style={{
+                fontFamily: 'var(--display)',
+                fontWeight: 400,
+                fontStyle: 'italic',
+                fontSize: 'clamp(20px, 2.5vw, 32px)',
+                color: 'var(--club-secondary, var(--accent))',
+                marginTop: 8,
+                letterSpacing: '0.02em',
+              }}
+            >
+              {club.motto || `${club.city} · Est. ${club.foundedYear}`}
             </span>
           )}
         </h1>
