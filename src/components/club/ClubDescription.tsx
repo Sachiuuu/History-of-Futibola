@@ -7,7 +7,7 @@ interface ClubDescriptionProps {
 
 export default function ClubDescription({ club, season }: ClubDescriptionProps) {
   return (
-    <section id="overview" style={{ maxWidth: '1280px', margin: '0 auto', padding: '96px 32px' }}>
+    <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '96px 32px' }}>
       <div style={{ display: 'grid', gridTemplateColumns: '5fr 7fr', gap: 32 }}>
         {/* Left: kicker + title + byline */}
         <div>

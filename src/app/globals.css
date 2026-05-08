@@ -7,6 +7,7 @@
   :root {
     /* Layout — navbar height drives sticky offsets */
     --navbar-h: 79px;
+    --section-nav-h: 46px;
 
     /* Club accent — overridden per-club via PageWrapper inline style */
     --accent: #C8102E;
@@ -20,10 +21,10 @@
     --muted: rgba(0, 0, 0, 0.62);
 
     /* Typography */
-    --display: 'Playfair Display', Georgia, serif;
+    --display: var(--font-display), Georgia, serif;
     --display-weight: 800;
-    --body: 'Inter', system-ui, sans-serif;
-    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --body: var(--font-body), system-ui, sans-serif;
+    --mono: var(--font-mono), ui-monospace, monospace;
 
     /* Legacy club vars — aliased to accent for backward compatibility */
     --club-primary: var(--accent);
@@ -45,7 +46,7 @@
 
   /* Sticky-nav clearance: when a section is targeted via #anchor,
      leave space for the navbar (--navbar-h) plus the SectionNav (~46px). */
-  section[id] { scroll-margin-top: calc(var(--navbar-h) + 64px); }
+  section[id] { scroll-margin-top: calc(var(--navbar-h) + var(--section-nav-h) + 16px); }
 
   body {
     background-color: color-mix(in srgb, var(--accent) 5%, var(--paper));
@@ -113,14 +114,16 @@
     margin: 0 0 24px;
     color: var(--ink);
   }
-  .lede::first-letter {
-    font-family: var(--display);
-    font-weight: var(--display-weight);
-    font-size: 4.2em;
-    float: left;
-    line-height: 0.9;
-    margin: 8px 14px 0 0;
-    color: var(--accent);
+  @media (min-width: 768px) {
+    .lede::first-letter {
+      font-family: var(--display);
+      font-weight: var(--display-weight);
+      font-size: 4.2em;
+      float: left;
+      line-height: 0.9;
+      margin: 8px 14px 0 0;
+      color: var(--accent);
+    }
   }
 
   /* Season results table */
@@ -172,6 +175,53 @@
   .season-table tr.current .pos-pill { background: var(--accent); color: #fff; }
   .season-table tr.current { background: var(--accent-soft); }
   .season-table .notable { color: var(--muted); font-size: 13px; }
+
+  .label-mono {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .kicker-accent {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .value-display-lg {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(28px, 3.5vw, 44px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  .value-display-md {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .cell-bordered {
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .cell-hoverable {
+    transition: background 0.18s ease;
+    cursor: default;
+  }
+  .cell-hoverable:hover {
+    background: var(--accent-soft);
+  }
 }
 
 /* =========================================================
