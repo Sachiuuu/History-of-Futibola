@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { TrophyRecord, TrophyEntry } from '@/types/club'
 import SectionHeader from '@/components/ui/SectionHeader'
+import { useCountUp } from '@/components/ui/AnimatedNumber'
 
 interface TrophyDisplayProps {
   trophies: TrophyRecord
@@ -45,24 +46,7 @@ function TrophyGlyph({ kind }: { kind: string }) {
 }
 
 function AnimatedCount({ target, visible }: { target: number; visible: boolean }) {
-  const [count, setCount] = useState(0)
-
-  useEffect(() => {
-    if (!visible) return
-    let current = 0
-    const step = Math.max(1, Math.ceil(target / 40))
-    const timer = setInterval(() => {
-      current += step
-      if (current >= target) {
-        setCount(target)
-        clearInterval(timer)
-      } else {
-        setCount(current)
-      }
-    }, 30)
-    return () => clearInterval(timer)
-  }, [visible, target])
-
+  const count = useCountUp(target, visible)
   return <span>×{count}</span>
 }
 

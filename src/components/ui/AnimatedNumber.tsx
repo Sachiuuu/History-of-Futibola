@@ -17,19 +17,25 @@ export function useIntersectionVisible(threshold = 0.2) {
   return { ref, visible }
 }
 
-export function useAnimatedCount(target: number, visible: boolean): number {
-  const [count, setCount] = useState(0)
+const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3)
+
+export function useCountUp(target: number, visible: boolean, duration = 1200): number {
+  const [value, setValue] = useState(0)
   useEffect(() => {
     if (!visible) return
-    setCount(0)
-    let current = 0
-    const step = Math.max(1, Math.ceil(target / 50))
-    const timer = setInterval(() => {
-      current += step
-      if (current >= target) { setCount(target); clearInterval(timer) }
-      else setCount(current)
-    }, 25)
-    return () => clearInterval(timer)
-  }, [visible, target])
-  return count
+    let raf = 0
+    const start = performance.now()
+    const tick = (now: number) => {
+      const elapsed = now - start
+      const progress = Math.min(1, elapsed / duration)
+      setValue(Math.round(easeOutCubic(progress) * target))
+      if (progress < 1) raf = requestAnimationFrame(tick)
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [visible, target, duration])
+  return value
 }
+
+// Backward compatibility — alias for existing call sites
+export const useAnimatedCount = useCountUp

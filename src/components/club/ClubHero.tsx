@@ -1,30 +1,21 @@
 'use client'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import Image from 'next/image'
+import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react'
 import type { Club } from '@/types/club'
 
 interface ClubHeroProps {
   club: Club
 }
 
-function ordinal(n: number): string {
-  const s = ['th', 'st', 'nd', 'rd']
-  const v = n % 100
-  return s[(v - 20) % 10] || s[v] || s[0]
-}
-
 export default function ClubHero({ club }: ClubHeroProps) {
-  const bgRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    function onScroll() {
-      if (bgRef.current) {
-        bgRef.current.style.transform = `translateY(${window.scrollY * 0.35}px)`
-      }
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  const sectionRef = useRef<HTMLElement>(null)
+  const reduceMotion = useReducedMotion()
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  })
+  const y = useTransform(scrollYProgress, [0, 1], reduceMotion ? ['0%', '0%'] : ['0%', '40%'])
 
   const leagueLabel = club.leagueId
     .replace(/-/g, ' ')
@@ -37,11 +28,12 @@ export default function ClubHero({ club }: ClubHeroProps) {
   return (
     <section
       id="overview"
+      ref={sectionRef}
       className="relative overflow-hidden flex items-end"
       style={{ minHeight: '86vh', background: '#0c0a09' }}
     >
-      {/* Stadium background */}
-      <div ref={bgRef} className="absolute inset-0">
+      {/* Stadium background w/ Framer-Motion parallax */}
+      <motion.div style={{ y }} className="absolute inset-0">
         <Image
           src={club.stadium.image}
           alt={club.stadium.name}
@@ -58,7 +50,7 @@ export default function ClubHero({ club }: ClubHeroProps) {
               'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.08) 55%, rgba(0,0,0,0.42) 100%)',
           }}
         />
-      </div>
+      </motion.div>
 
       {/* Content */}
       <div
@@ -67,7 +59,7 @@ export default function ClubHero({ club }: ClubHeroProps) {
       >
         {/* Meta top row */}
         <div
-          className="flex items-center gap-2 mb-7"
+          className="flex items-center gap-2 mb-7 flex-wrap"
           style={{
             fontFamily: 'var(--mono)',
             fontSize: 11,
@@ -110,17 +102,16 @@ export default function ClubHero({ club }: ClubHeroProps) {
 
         {/* Bottom strip — divider + crest + meta items */}
         <div
-          className="flex items-end gap-8"
+          className="flex items-end gap-8 flex-wrap"
           style={{ borderTop: '1px solid rgba(255,255,255,0.18)', paddingTop: 28 }}
         >
-          {/* Club badge — T-04: 112px, T-03: 3 pulses only */}
-          <div
+          {/* Club badge — Framer Motion spring stamp */}
+          <motion.div
+            initial={{ scale: 0.6, opacity: 0, rotate: -15 }}
+            animate={{ scale: 1, opacity: 1, rotate: 0 }}
+            transition={{ type: 'spring', stiffness: 180, damping: 14, delay: 0.2 }}
             className="relative flex-shrink-0"
-            style={{
-              width: 112,
-              height: 112,
-              animation: 'badge-pulse 2.8s ease-in-out 3',
-            }}
+            style={{ width: 112, height: 112 }}
           >
             <Image
               src={club.badge}
@@ -129,9 +120,9 @@ export default function ClubHero({ club }: ClubHeroProps) {
               className="object-contain"
               sizes="112px"
             />
-          </div>
+          </motion.div>
 
-          {/* Meta strip — T-01: flex-wrap replaces fixed 5-col grid */}
+          {/* Meta strip */}
           <div
             className="flex flex-wrap gap-x-8 gap-y-4 flex-1"
           >
