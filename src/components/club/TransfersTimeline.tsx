@@ -10,10 +10,9 @@ export default function TransfersTimeline({ transfers }: { transfers: Transfer[]
         {sorted.map((t) => (
           <div
             key={`${t.player}-${t.year}`}
+            className="grid grid-cols-[80px_1fr] md:grid-cols-[80px_1fr_auto_auto]"
             style={{
-              display: 'grid',
-              gridTemplateColumns: '80px 1fr auto auto',
-              gap: 24,
+              gap: 16,
               alignItems: 'center',
               padding: '18px 0',
               borderBottom: '1px solid var(--rule)',

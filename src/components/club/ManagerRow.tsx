@@ -1,7 +1,7 @@
 import type { Manager } from '@/types/club'
 
 function Divider() {
-  return <div style={{ width: 1, background: 'var(--rule)', alignSelf: 'stretch' }} />
+  return <div className="hidden md:block" style={{ width: 1, background: 'var(--rule)', alignSelf: 'stretch' }} />
 }
 
 export default function ManagerRow({ manager }: { manager: Manager }) {
@@ -10,9 +10,8 @@ export default function ManagerRow({ manager }: { manager: Manager }) {
   return (
     <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px 48px' }}>
       <div
+        className="flex flex-col md:flex-row gap-4 md:gap-0"
         style={{
-          display: 'flex',
-          gap: 0,
           padding: '20px 28px',
           background: 'var(--paper-2)',
           border: '1px solid var(--rule)',

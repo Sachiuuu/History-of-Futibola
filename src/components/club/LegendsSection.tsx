@@ -10,12 +10,10 @@ export default function LegendsSection({ legends }: LegendsSectionProps) {
   return (
     <section id="legends">
       <SectionHeader kicker="Hall of Fame" title="Legends of the Club" />
+      {/* Skipped: cursor follower (too playful for editorial tone) */}
       <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '36px 28px',
-        }}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+        style={{ gap: '36px 28px' }}
       >
         {legends.map((legend) => (
           <LegendCard key={legend.id} legend={legend} />

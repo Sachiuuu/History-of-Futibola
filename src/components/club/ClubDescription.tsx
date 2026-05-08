@@ -8,7 +8,7 @@ interface ClubDescriptionProps {
 export default function ClubDescription({ club, season }: ClubDescriptionProps) {
   return (
     <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '96px 32px' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '5fr 7fr', gap: 32 }}>
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-[5fr_7fr]">
         {/* Left: kicker + title + byline */}
         <div>
           <div className="kicker" style={{ color: 'var(--accent)' }}>A Profile</div>

@@ -222,6 +222,15 @@
   .cell-hoverable:hover {
     background: var(--accent-soft);
   }
+
+  .club-records-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 1024px) {
+    .club-records-grid {
+      grid-template-columns: repeat(var(--rec-cols, 5), 1fr);
+    }
+  }
 }
 
 /* =========================================================

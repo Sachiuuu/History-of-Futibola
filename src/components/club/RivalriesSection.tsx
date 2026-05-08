@@ -6,7 +6,7 @@ export default function RivalriesSection({ rivalries }: { rivalries: Rivalry[] }
   return (
     <section id="rivalries">
       <SectionHeader kicker="Derby Days" title="Rivalries" />
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0, borderTop: '1px solid var(--rule)', borderLeft: '1px solid var(--rule)' }}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 0, borderTop: '1px solid var(--rule)', borderLeft: '1px solid var(--rule)' }}>
         {rivalries.map((r) => {
           const total = r.wins + r.draws + r.losses
           const winRate = Math.round((r.wins / total) * 100)

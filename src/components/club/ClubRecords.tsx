@@ -49,9 +49,10 @@ export default function ClubRecords({ records }: ClubRecordsProps) {
     <section id="records" ref={ref as React.RefObject<HTMLElement>}>
       <SectionHeader kicker="Club History" title="Records & Milestones" />
       <div
+        className="club-records-grid"
         style={{
           display: 'grid',
-          gridTemplateColumns: `repeat(${entries.length}, 1fr)`,
+          ['--rec-cols' as string]: String(entries.length),
           borderTop: '1px solid var(--rule)',
           borderBottom: '1px solid var(--rule)',
         }}

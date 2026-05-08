@@ -42,7 +42,7 @@ function FormationDots({ formation }: { formation: string }) {
 function AttributeBar({ name, intensity, tag }: { name: string; intensity: number; tag?: string }) {
   const filled = Math.max(0, Math.min(10, intensity))
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 140px 90px', alignItems: 'center', gap: 16, padding: '10px 0', borderBottom: '1px solid var(--rule)' }}>
+    <div className="grid grid-cols-1 lg:grid-cols-[1fr_140px_90px]" style={{ alignItems: 'center', gap: 16, padding: '10px 0', borderBottom: '1px solid var(--rule)' }}>
       <div style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--ink)' }}>
         {name}
       </div>
@@ -70,7 +70,7 @@ export default function TacticalSection({ tactical }: { tactical: TacticalIdenti
   return (
     <section id="tactical">
       <SectionHeader kicker="Playing Style" title="Tactical Identity" />
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', borderTop: '1px solid var(--rule)', gap: 0 }}>
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr]" style={{ borderTop: '1px solid var(--rule)', gap: 0 }}>
         <div style={{ borderRight: '1px solid var(--rule)', padding: '40px 32px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div style={{ fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 8 }}>Formation</div>
           <div style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 56, color: 'var(--accent)', letterSpacing: '-0.03em', lineHeight: 1 }}>{tactical.formation}</div>
@@ -88,7 +88,7 @@ export default function TacticalSection({ tactical }: { tactical: TacticalIdenti
           )}
 
           <div style={{ borderTop: '1px solid var(--rule)' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 140px 90px', gap: 16, padding: '10px 0', fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--muted)', borderBottom: '1px solid var(--rule)' }}>
+            <div className="hidden lg:grid lg:grid-cols-[1fr_140px_90px]" style={{ gap: 16, padding: '10px 0', fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--muted)', borderBottom: '1px solid var(--rule)' }}>
               <span>Attribute</span>
               <span style={{ textAlign: 'center' }}>Intensity</span>
               <span style={{ textAlign: 'right' }}>Note</span>

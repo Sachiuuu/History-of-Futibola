@@ -43,7 +43,7 @@ export default function SeasonSection({ availableSeasons, seasonsData }: SeasonS
     <section id="seasons">
       <SectionHeader kicker="Form Guide" title="Season by Season" />
 
-      <div style={{ display: 'grid', gridTemplateColumns: '7fr 5fr', gap: 32 }}>
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-[7fr_5fr]">
         {/* Left: seasons table + kits */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
         <div style={{ border: '1px solid var(--rule)', background: 'var(--paper-2)', overflowX: 'auto' }}>
@@ -132,7 +132,7 @@ export default function SeasonSection({ availableSeasons, seasonsData }: SeasonS
             </div>
 
             {/* Stats grid 3×2 */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
               {[
                 { n: panel.leaguePoints, label: 'Points' },
                 { n: panel.leagueWins, label: 'Wins' },
