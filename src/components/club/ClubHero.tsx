@@ -8,6 +8,11 @@ interface ClubHeroProps {
   club: Club
 }
 
+function issueNumber(clubId: string): string {
+  const n = Array.from(clubId).reduce((acc, ch) => acc * 31 + ch.charCodeAt(0), 7) % 99 + 1
+  return String(n).padStart(2, '0')
+}
+
 export default function ClubHero({ club }: ClubHeroProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const reduceMotion = useReducedMotion()
@@ -72,7 +77,7 @@ export default function ClubHero({ club }: ClubHeroProps) {
             borderRadius: 4,
           }}
         >
-          <span>CLUB PROFILE</span>
+          <span>ISSUE Nº {issueNumber(club.id)}</span>
           <span style={{ color: 'var(--muted)' }}>·</span>
           <span>{club.country.toUpperCase()} · {leagueLabel.toUpperCase()}</span>
           <span style={{ color: 'var(--muted)' }}>·</span>

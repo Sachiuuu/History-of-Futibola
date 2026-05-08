@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Playfair_Display, Inter, JetBrains_Mono } from 'next/font/google'
 import { ThemeProvider } from '@/contexts/ThemeContext'
+import PageTransition from '@/components/layout/PageTransition'
 import './globals.css'
 
 const playfair = Playfair_Display({
@@ -40,7 +41,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <ThemeProvider>
-          {children}
+          <PageTransition>
+            {children}
+          </PageTransition>
         </ThemeProvider>
       </body>
     </html>
