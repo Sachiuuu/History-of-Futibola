@@ -1,4 +1,5 @@
 import type { ClubRecord } from '@/types/club'
+import SectionHeader from '@/components/ui/SectionHeader'
 
 interface ClubRecordsProps {
   records: Record<string, ClubRecord>
@@ -36,34 +37,36 @@ export default function ClubRecords({ records }: ClubRecordsProps) {
   const entries = Object.entries(records).slice(0, 5)
 
   return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: `repeat(${entries.length}, 1fr)`,
-        borderTop: '1px solid var(--rule)',
-        borderBottom: '1px solid var(--rule)',
-        marginTop: 64,
-      }}
-    >
-      {entries.map(([key, record], i) => (
-        <div
-          key={key}
-          style={{
-            padding: '22px 18px',
-            borderRight: i < entries.length - 1 ? '1px solid var(--rule)' : 'none',
-          }}
-        >
-          <div style={{ fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 8 }}>
-            {RECORD_LABELS[key] ?? key}
+    <section id="records">
+      <SectionHeader kicker="Club History" title="Records & Milestones" />
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: `repeat(${entries.length}, 1fr)`,
+          borderTop: '1px solid var(--rule)',
+          borderBottom: '1px solid var(--rule)',
+        }}
+      >
+        {entries.map(([key, record], i) => (
+          <div
+            key={key}
+            style={{
+              padding: '28px 20px',
+              borderRight: i < entries.length - 1 ? '1px solid var(--rule)' : 'none',
+            }}
+          >
+            <div style={{ fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 10 }}>
+              {RECORD_LABELS[key] ?? key}
+            </div>
+            <div style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 44, lineHeight: 1, color: 'var(--accent)', letterSpacing: '-0.02em' }}>
+              {recordValue(record)}
+            </div>
+            <div style={{ fontSize: 13, marginTop: 8, color: 'var(--muted)' }}>
+              {recordSub(record)}
+            </div>
           </div>
-          <div style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 36, lineHeight: 1, color: 'var(--ink)', letterSpacing: '-0.02em' }}>
-            {recordValue(record)}
-          </div>
-          <div style={{ fontSize: 12, marginTop: 6, color: 'var(--muted)' }}>
-            {recordSub(record)}
-          </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </section>
   )
 }

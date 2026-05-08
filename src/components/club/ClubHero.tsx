@@ -58,13 +58,17 @@ export default function ClubHero({ club }: ClubHeroProps) {
             fontFamily: 'var(--mono)',
             fontSize: 11,
             letterSpacing: '0.16em',
-            color: 'rgba(255,255,255,0.85)',
+            color: 'var(--ink)',
+            background: 'var(--paper)',
+            display: 'inline-flex',
+            padding: '6px 14px',
+            borderRadius: 4,
           }}
         >
           <span>CLUB PROFILE</span>
-          <span style={{ color: 'rgba(255,255,255,0.4)' }}>·</span>
+          <span style={{ color: 'var(--muted)' }}>·</span>
           <span>{club.country.toUpperCase()} · {leagueLabel.toUpperCase()}</span>
-          <span style={{ color: 'rgba(255,255,255,0.4)' }}>·</span>
+          <span style={{ color: 'var(--muted)' }}>·</span>
           <span>EST. {club.foundedYear}</span>
         </div>
 
