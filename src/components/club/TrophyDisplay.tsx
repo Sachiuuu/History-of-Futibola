@@ -160,6 +160,7 @@ export default function TrophyDisplay({ trophies }: TrophyDisplayProps) {
               }}
             >
               <div
+                key={`shimmer-${i}-${hoveredIdx === i ? 'on' : 'off'}`}
                 style={{
                   position: 'absolute',
                   top: 0,

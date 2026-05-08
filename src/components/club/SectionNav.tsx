@@ -33,7 +33,7 @@ export default function SectionNav({ sections }: SectionNavProps) {
       aria-label="Club sections"
       className="sticky z-40"
       style={{
-        top: 68,
+        top: 'var(--navbar-h)',
         background: 'color-mix(in srgb, var(--paper) 92%, transparent)',
         backdropFilter: 'blur(8px)',
         WebkitBackdropFilter: 'blur(8px)',
