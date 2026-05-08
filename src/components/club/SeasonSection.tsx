@@ -65,7 +65,10 @@ export default function SeasonSection({ availableSeasons, seasonsData }: SeasonS
                 <tr
                   key={s.season}
                   className={selected === s.season ? 'current' : ''}
+                  tabIndex={0}
+                  role="row"
                   onClick={() => setSelected(s.season)}
+                  onKeyDown={(e) => e.key === 'Enter' && setSelected(s.season)}
                 >
                   <td className="season-cell">{s.displayLabel}</td>
                   <td className="num pos-cell">
@@ -97,6 +100,8 @@ export default function SeasonSection({ availableSeasons, seasonsData }: SeasonS
         {/* Right: current season panel */}
         {panel && (
           <aside
+            key={selected}
+            className="animate-fade-in"
             style={{
               padding: 36,
               border: '2px solid var(--accent)',
@@ -114,7 +119,10 @@ export default function SeasonSection({ availableSeasons, seasonsData }: SeasonS
                 </div>
               </div>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 2 }}>
-                <span style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: 72, lineHeight: 1, color: 'var(--accent)', letterSpacing: '-0.04em' }}>
+                <span style={{
+                  fontFamily: 'var(--display)', fontWeight: 800, fontSize: 72, lineHeight: 1, letterSpacing: '-0.04em',
+                  color: panel.leaguePosition <= 4 ? 'var(--accent)' : panel.leaguePosition >= 15 ? '#b45309' : 'var(--ink)',
+                }}>
                   {panel.leaguePosition}
                 </span>
                 <span style={{ fontFamily: 'var(--body)', fontSize: 20, fontWeight: 500, verticalAlign: 'super', marginLeft: 3, color: 'var(--muted)' }}>
