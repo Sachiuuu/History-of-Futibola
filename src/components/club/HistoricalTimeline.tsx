@@ -1,3 +1,5 @@
+'use client'
+import { useEffect, useRef, useState } from 'react'
 import type { TimelineEvent } from '@/types/club'
 import SectionHeader from '@/components/ui/SectionHeader'
 
@@ -6,14 +8,29 @@ interface HistoricalTimelineProps {
 }
 
 export default function HistoricalTimeline({ events }: HistoricalTimelineProps) {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect() } },
+      { threshold: 0.05 }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
   return (
     <section id="history">
       <SectionHeader kicker="Timeline" title="A History, Briefly" />
 
-      <div style={{ borderTop: '1px solid var(--rule)' }}>
-        {events.map((event) => (
+      <div ref={containerRef} style={{ borderTop: '1px solid var(--rule)' }}>
+        {events.map((event, i) => (
           <article
             key={event.year}
+            className={visible ? 'animate-slide-in' : ''}
             style={{
               display: 'grid',
               gridTemplateColumns: '120px 1fr 6fr',
@@ -23,6 +40,9 @@ export default function HistoricalTimeline({ events }: HistoricalTimelineProps) 
               borderBottom: '1px solid var(--rule)',
               maxWidth: 900,
               margin: '0 auto',
+              opacity: visible ? undefined : 0,
+              animationDelay: `${i * 60}ms`,
+              animationFillMode: 'forwards',
             }}
           >
             {/* Year */}
