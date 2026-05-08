@@ -84,6 +84,28 @@ export default function ClubHero({ club }: ClubHeroProps) {
           <span>EST. {club.foundedYear}</span>
         </div>
 
+        {/* Read mode toggle */}
+        <button
+          onClick={() => document.documentElement.classList.toggle('read-mode')}
+          aria-label="Toggle read mode"
+          style={{
+            position: 'absolute',
+            top: 24,
+            right: 32,
+            fontFamily: 'var(--mono)',
+            fontSize: 10,
+            letterSpacing: '0.16em',
+            textTransform: 'uppercase',
+            color: '#fff',
+            background: 'rgba(255,255,255,0.1)',
+            border: '1px solid rgba(255,255,255,0.3)',
+            padding: '6px 12px',
+            cursor: 'pointer',
+          }}
+        >
+          Read mode
+        </button>
+
         {/* Big display title */}
         <h1 className="hero-title">
           <span className="block" style={{ color: '#fff' }}>{titleLine1}</span>
@@ -131,9 +153,10 @@ export default function ClubHero({ club }: ClubHeroProps) {
           <motion.div
             initial={{ scale: 0.6, opacity: 0, rotate: -15 }}
             animate={{ scale: 1, opacity: 1, rotate: 0 }}
+            whileHover={{ rotateX: 6, rotateY: -6 }}
             transition={{ type: 'spring', stiffness: 180, damping: 14, delay: 0.2 }}
             className="relative flex-shrink-0"
-            style={{ width: 112, height: 112 }}
+            style={{ width: 112, height: 112, transformStyle: 'preserve-3d', perspective: 600 }}
           >
             <Image
               src={club.badge}

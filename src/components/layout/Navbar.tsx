@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useTheme } from '@/contexts/ThemeContext'
+import { useMagnetic } from '@/hooks/useMagnetic'
 
 interface NavbarProps {
   clubName?: string
@@ -11,6 +12,7 @@ interface NavbarProps {
 
 export default function Navbar({ clubName, leagueName, leagueId }: NavbarProps) {
   const { isDark, toggle } = useTheme()
+  const toggleRef = useMagnetic(0.25)
 
   return (
     <header
@@ -60,13 +62,15 @@ export default function Navbar({ clubName, leagueName, leagueId }: NavbarProps) 
 
         {/* Dark/light toggle */}
         <button
+          ref={toggleRef}
           onClick={toggle}
           aria-label="Toggle dark mode"
-          className="flex items-center justify-center w-8 h-8 rounded-full transition-all hover:scale-110 flex-shrink-0"
+          className="flex items-center justify-center w-8 h-8 rounded-full flex-shrink-0"
           style={{
             background: 'var(--paper-2)',
             border: '1px solid var(--rule)',
             color: 'var(--ink)',
+            transition: 'transform 0.2s ease',
           }}
         >
           {isDark ? (

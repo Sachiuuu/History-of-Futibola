@@ -106,6 +106,7 @@ export default function TrophyDisplay({ trophies }: TrophyDisplayProps) {
 
       {/* Trophy grid — shared borders */}
       <div
+        className="hidden-in-read"
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',

@@ -1,5 +1,48 @@
-import type { TacticalIdentity } from '@/types/club'
+import type { TacticalIdentity, TacticalAttribute } from '@/types/club'
 import SectionHeader from '@/components/ui/SectionHeader'
+
+function Radar({ attributes }: { attributes: TacticalAttribute[] }) {
+  const data = attributes.slice(0, 5)
+  const cx = 100
+  const cy = 100
+  const R = 80
+  const angle = (i: number) => (Math.PI * 2 * i) / data.length - Math.PI / 2
+  const points = data
+    .map((a, i) => {
+      const r = (a.intensity / 10) * R
+      return `${cx + Math.cos(angle(i)) * r},${cy + Math.sin(angle(i)) * r}`
+    })
+    .join(' ')
+  return (
+    <svg viewBox="0 0 200 200" style={{ width: '100%', maxWidth: 280, margin: '24px auto 0' }}>
+      {[0.25, 0.5, 0.75, 1].map((scale) => (
+        <polygon
+          key={scale}
+          points={data
+            .map((_, i) => `${cx + Math.cos(angle(i)) * R * scale},${cy + Math.sin(angle(i)) * R * scale}`)
+            .join(' ')}
+          fill="none"
+          stroke="var(--rule)"
+          strokeWidth="0.5"
+        />
+      ))}
+      <polygon points={points} fill="var(--accent)" fillOpacity="0.25" stroke="var(--accent)" strokeWidth="1.5" />
+      {data.map((a, i) => (
+        <text
+          key={a.name}
+          x={cx + Math.cos(angle(i)) * (R + 12)}
+          y={cy + Math.sin(angle(i)) * (R + 12)}
+          fontSize="8"
+          textAnchor="middle"
+          fill="var(--muted)"
+          style={{ fontFamily: 'var(--mono)' }}
+        >
+          {a.name.split(' ')[0]}
+        </text>
+      ))}
+    </svg>
+  )
+}
 
 const ROW_LABELS = ['GK', 'DEF', 'MID', 'ATT'] as const
 
@@ -96,6 +139,7 @@ export default function TacticalSection({ tactical }: { tactical: TacticalIdenti
             {tactical.attributes.map((attr) => (
               <AttributeBar key={attr.name} name={attr.name} intensity={attr.intensity} tag={attr.tag} />
             ))}
+            {tactical.attributes.length >= 3 && <Radar attributes={tactical.attributes} />}
           </div>
         </div>
       </div>
