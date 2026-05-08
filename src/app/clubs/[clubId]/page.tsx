@@ -9,6 +9,7 @@ import PageWrapper from '@/components/layout/PageWrapper'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import ClubHero from '@/components/club/ClubHero'
+import SectionNav from '@/components/club/SectionNav'
 import ClubDescription from '@/components/club/ClubDescription'
 import ClubRecords from '@/components/club/ClubRecords'
 import TrophyDisplay from '@/components/club/TrophyDisplay'
@@ -57,6 +58,7 @@ export default async function ClubPage({ params }: PageProps) {
 
       {/* Hero — full bleed, no container padding */}
       <ClubHero club={club} />
+      <SectionNav />
 
       {/* Editorial intro: description + records strip */}
       <ClubDescription club={club} />

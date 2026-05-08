@@ -9,15 +9,6 @@ interface NavbarProps {
   leagueId?: string
 }
 
-const NAV_LINKS = [
-  { href: '#overview', label: 'Overview' },
-  { href: '#trophies', label: 'Trophies' },
-  { href: '#history', label: 'History' },
-  { href: '#seasons', label: 'Seasons' },
-  { href: '#kits', label: 'Kits' },
-  { href: '#legends', label: 'Legends' },
-]
-
 export default function Navbar({ clubName, leagueName, leagueId }: NavbarProps) {
   const { isDark, toggle } = useTheme()
 
@@ -66,31 +57,6 @@ export default function Navbar({ clubName, leagueName, leagueId }: NavbarProps) 
             </div>
           </div>
         </div>
-
-        {/* Section nav — desktop only */}
-        {clubName && (
-          <nav
-            className="hidden md:flex gap-5"
-            style={{
-              fontFamily: 'var(--mono)',
-              fontSize: 13,
-              textTransform: 'uppercase',
-              letterSpacing: '0.14em',
-              color: 'var(--muted)',
-            }}
-          >
-            {NAV_LINKS.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className="hover:opacity-100 transition-opacity"
-                style={{ opacity: 0.7 }}
-              >
-                {l.label}
-              </a>
-            ))}
-          </nav>
-        )}
 
         {/* Dark/light toggle */}
         <button
