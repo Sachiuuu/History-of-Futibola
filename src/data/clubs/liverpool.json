@@ -17,6 +17,52 @@
   },
   "description": "Liverpool Football Club is one of the most successful and supported clubs in the world. Founded in 1892 and based at the iconic Anfield stadium, the Reds have been European royalty since the 1970s. Their passionate fanbase, defined by the legendary anthem 'You'll Never Walk Alone', creates an atmosphere that rivals any in world football. Liverpool's philosophy has always centred on attacking, relentless pressing football — a style that reached its modern zenith under Jürgen Klopp.",
   "differentiator": "No club in English football history has won the European Cup / Champions League as many times as Liverpool's six titles. Their 2018–19 and 2021–22 domestic cup double campaigns, combined with their Champions League pedigree, cement their status as England's greatest ever continental force.",
+  "motto": "You'll Never Walk Alone",
+  "manager": {
+    "name": "Arne Slot",
+    "nationality": "Netherlands",
+    "since": 2024
+  },
+  "rivalries": [
+    {
+      "name": "Everton",
+      "badge": "/images/clubs/everton/badge.png",
+      "wins": 131,
+      "draws": 74,
+      "losses": 70,
+      "iconicMatch": "Liverpool 4–4 Everton, 1991 FA Cup — The original replay classic."
+    },
+    {
+      "name": "Manchester United",
+      "badge": "/images/clubs/manchester-united/badge.png",
+      "wins": 78,
+      "draws": 57,
+      "losses": 92,
+      "iconicMatch": "Liverpool 4–1 Man United, 2009 — Torres and Gerrard dismantled United at Anfield."
+    },
+    {
+      "name": "Manchester City",
+      "badge": "/images/clubs/manchester-city/badge.png",
+      "wins": 53,
+      "draws": 34,
+      "losses": 56,
+      "iconicMatch": "Liverpool 3–0 Man City, 2019 CL QF — Fabinho's thunderbolt opened the floodgates."
+    }
+  ],
+  "notableTransfers": [
+    { "player": "Kenny Dalglish", "type": "in", "fee": "£440k", "year": 1977, "club": "Celtic" },
+    { "player": "Ian Rush", "type": "out", "fee": "£3.2m", "year": 1987, "club": "Juventus" },
+    { "player": "Fernando Torres", "type": "out", "fee": "£50m", "year": 2011, "club": "Chelsea" },
+    { "player": "Luis Suárez", "type": "out", "fee": "£75m", "year": 2014, "club": "Barcelona" },
+    { "player": "Mohamed Salah", "type": "in", "fee": "£36.9m", "year": 2017, "club": "AS Roma" },
+    { "player": "Virgil van Dijk", "type": "in", "fee": "£75m", "year": 2018, "club": "Southampton" },
+    { "player": "Darwin Núñez", "type": "in", "fee": "£85m", "year": 2022, "club": "Benfica" }
+  ],
+  "tacticalIdentity": {
+    "formation": "4-3-3",
+    "style": "High-press, vertical, relentless — the Klopp blueprint that defined an era.",
+    "attributes": ["Gegenpressing", "High defensive line", "Fast transitions", "Width & overloads"]
+  },
   "theme": {
     "primaryColor": "#C8102E",
     "secondaryColor": "#F6EB61",
